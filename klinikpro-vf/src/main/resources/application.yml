@@ -1,0 +1,16 @@
+spring:
+    datasource:
+        url: jdbc:postgresql://localhost:5432/klinikpro
+        username: klinik
+        password: klinik_dev
+    jpa:
+        hibernate:
+            ddl-auto: validate
+        open-in-view: false
+management:
+    endpoints:
+        web:
+            exposure:
+                include: health,info
+app:
+    version: VF1-0.0.1
