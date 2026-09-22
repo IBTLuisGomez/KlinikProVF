@@ -6,8 +6,8 @@ Este documento registra el estado real del proyecto KlinikProBase, incluyendo la
 
 - Proyecto: KlinikProBase
 - Rama principal: `main`
-- Fecha de revisión: 2026-09-21
-- Estado observado: proyecto con dos líneas de trabajo activas
+- Fecha de revisión: 2026-09-22
+- Estado observado: backend con autenticación, multi-tenant y módulo de pacientes inicial
 
 ## Visión general histórica
 
@@ -64,9 +64,73 @@ Se identificó la incorporación de:
 
 Esto marca un avance importante respecto al prototipo inicial.
 
+### Pacientes
+
+Se agregó el primer módulo de negocio del backend:
+
+- entidad `Patient`
+- repositorio JPA con consultas por sucursal
+- servicio con alta, edición, búsqueda y eliminación
+- códigos consecutivos de cuatro dígitos por sucursal
+- validación de código único dentro de la sucursal
+- controlador REST en `/api/patients`
+- DTO de entrada para crear y editar pacientes
+- manejo común de errores mediante `ApiExceptionHandler`
+
+### Base de datos y configuración
+
+La base de datos se organiza con tres migraciones Flyway:
+
+- `V1__init_tenancy.sql` — tenants y sucursales
+- `V2__schema_core.sql` — pacientes, servicios, especialistas, citas, caja y finanzas
+- `V3__auth.sql` — usuarios, roles y relación con tenant/sucursal
+
+La aplicación Spring Boot usa el puerto HTTP `8081` y la configuración local de PostgreSQL está definida para `localhost:5433`.
+
+### Documentación técnica
+
+Se agregó [ARQUITECTURA.md](ARQUITECTURA.md), que documenta:
+
+- estructura de carpetas
+- rutas HTTP
+- reglas de seguridad
+- diagrama de componentes
+- flujo de autenticación
+- puesta en marcha local
+
 ## Commits reales registrados en Git
 
-### 1. `426a19a`
+### 1. `6346c9a`
+
+- Título: `feat: add Patient entity, repository, service, and controller`
+- Descripción:
+  - incorporación de la entidad de pacientes
+  - persistencia y consultas JPA
+  - servicio de pacientes
+  - endpoints REST protegidos
+
+### 2. `353a371`
+
+- Título: `"VF1: fase 0 completa — esquema multitenant + auth JWT + roles"`
+- Descripción:
+  - cierre de la fase inicial de autenticación
+  - esquema multi-tenant
+  - roles y JWT
+
+### 3. `f73b955`
+
+- Título: `feat: Update database configuration and schema for multi-tenancy support`
+- Descripción:
+  - actualización de configuración de base de datos
+  - soporte de tenant y sucursal
+
+### 4. `55ff2a1`
+
+- Título: `docs: Update README.md to reflect project evolution and current status`
+- Descripción:
+  - actualización de documentación del proyecto
+
+### 5. `426a19a`
 
 - Título: `feat: Initialize KlinikProVF project with Spring Boot and PostgreSQL`
 - Descripción:
@@ -75,7 +139,7 @@ Esto marca un avance importante respecto al prototipo inicial.
   - base para persistencia real
   - preparación de arquitectura moderna
 
-### 2. `2fb05e3`
+### 6. `2fb05e3`
 
 - Título: `first commit`
 - Descripción:
@@ -87,10 +151,28 @@ Esto marca un avance importante respecto al prototipo inicial.
 ### Fecha inicial
 - creación del repositorio con la base del proyecto
 
-### Etapa siguiente
+### Etapa de backend inicial
 - inicio de la versión en Spring Boot
 - configuración de PostgreSQL
 - incorporación de autenticación y estructura multi-tenant
+
+### Etapa de pacientes
+- creación de entidad, repositorio, servicio y controlador de pacientes
+- búsqueda por texto dentro de la sucursal autenticada
+- códigos únicos y autogenerados por sucursal
+
+### Etapa de documentación técnica
+- creación de `ARQUITECTURA.md`
+- descripción de rutas, seguridad, migraciones y diagramas
+
+## Cambios pendientes de commit
+
+En la última revisión de Git aparecen cambios locales todavía no asociados a un commit:
+
+- modificación de `SecurityConfig.java`
+- archivo nuevo `ARQUITECTURA.md`
+
+Estos cambios deben revisarse, probarse y registrarse en un commit posterior cuando su contenido quede aprobado.
 
 ## Estado funcional actual
 
@@ -116,10 +198,10 @@ Se recomienda mantener este historial con el siguiente formato:
 ## Ejemplo de actualización futura
 
 ```md
-### 2026-09-21 - v0.1.0
-- Cambio: documentación inicial del proyecto y actualización del estado de autenticación
-- Archivos clave: README.md, HISTORIAL.md, AuthController.java, SecurityConfig.java
-- Impacto: documentación y estructura base de seguridad
+### 2026-09-22 - estado actual
+- Cambio: incorporación del módulo de pacientes y actualización de documentación técnica
+- Archivos clave: `patients/`, `ARQUITECTURA.md`, `README.md`, `HISTORIAL.md`
+- Impacto: primer módulo clínico persistente y trazabilidad de la arquitectura
 - Commit: pendiente de registrar
 ```
 
@@ -133,13 +215,26 @@ Aunque el repositorio tiene pocos commits, refleja una evolución muy clara:
 
 ## Estado final del historial
 
-El historial documental actual debe entenderse como base de control y trazabilidad para futuras mejoras. Desde ese punto, cada cambio significativo debe agregarse aquí con:
+El historial documental actual debe entenderse como base de control y trazabilidad para futuras mejoras. Desde este punto, cada cambio significativo debe agregarse aquí con:
 
 - fecha
 - descripción
 - archivos afectados
 - impacto del cambio
 - referencia del commit
+
+## Estado técnico al 2026-09-22
+
+El backend ya cuenta con:
+
+- autenticación JWT stateless
+- roles `ADMIN`, `COORDINADOR`, `FISIO` y `RECEPCION`
+- contexto de tenant y sucursal
+- migraciones Flyway V1, V2 y V3
+- API REST inicial de pacientes
+- persistencia PostgreSQL validada por esquema JPA/Flyway
+
+Continúa pendiente completar los módulos de agenda, caja, finanzas y el frontend integrado con la API.
 
 ## Resumen final
 
