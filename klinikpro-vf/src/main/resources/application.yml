@@ -1,6 +1,8 @@
+server:
+    port: 8081
 spring:
     datasource:
-        url: jdbc:postgresql://localhost:5432/klinikpro
+        url: jdbc:postgresql://localhost:5433/klinikpro # (o 5432 según lo que quedó)
         username: klinik
         password: klinik_dev
     jpa:

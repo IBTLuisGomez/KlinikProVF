@@ -1,4 +1,4 @@
-package systems.cytohelix.klinikpro;
+package systems.cytohelix.klinikpro_vf;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
