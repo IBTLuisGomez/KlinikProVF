@@ -1,221 +1,136 @@
 # KlinikProBase
 
-KlinikProBase es la base de un sistema web de gestión clínica y administrativa para una clínica o consultorio, desarrollado en un único archivo HTML con estilos y lógica embebidos. Actualmente el proyecto está funcionando como una aplicación cliente local, sin backend ni servidor externo, pensada para ejecutarse en el navegador y guardar la información localmente.
+KlinikProBase es la base documental y técnica del proyecto KlinikPro. En el estado actual del repositorio se observan dos líneas de trabajo:
 
-## Estado actual del proyecto
+1. un prototipo web local de gestión clínica desarrollado en un único archivo HTML
+2. una versión más reciente del proyecto basada en Spring Boot con PostgreSQL, como base para una evolución más robusta y escalable
 
-El repositorio actual contiene principalmente:
+## Estado actual del repositorio
 
-- `KlinikProVF.html`: aplicación principal
-- `README.md`: documentación del proyecto
+La estructura actual incluye:
 
-La aplicación es una solución de tipo front-end puro (HTML + CSS + JavaScript), con persistencia en IndexedDB del navegador y soporte para exportación/importación de respaldos JSON y CSV.
+- [KlinikProVF.html](KlinikProVF.html): prototipo funcional de la clínica con interfaz web e interacciones locales
+- [klinikpro-vf](klinikpro-vf): proyecto activo en Java/Spring Boot
+- [klinikpro-vf/docker-compose.yml](klinikpro-vf/docker-compose.yml): configuración del servicio PostgreSQL
+- [klinikpro-vf/pom.xml](klinikpro-vf/pom.xml): configuración Maven del proyecto Spring Boot
+- [klinikpro-vf/src/main/java](klinikpro-vf/src/main/java): clases Java principales
+- [klinikpro-vf/src/test/java](klinikpro-vf/src/test/java): pruebas base del proyecto
 
-## Descripción del sistema
+## Visión general
 
-La app está orientada a la administración clínica y financiera. Sus funcionalidades principales incluyen:
+El proyecto tiene como objetivo gestionar una clínica con flujo operativo de:
 
-- Gestión de pacientes
-- Registro y control de citas
-- Agenda médica y disponibilidad por día
-- Gestión de caja y arqueo
-- Cobros, gastos e ingresos
-- Control de cuentas por cobrar y por pagar
-- Reportes y exportación de agenda
-- Configuración de sucursal, datos de la clínica y logo
-- Respaldos locales y sincronización CSV
+- pacientes
+- agenda de citas
+- disponibilidad y turnos
+- caja y cobros
+- gastos y arqueo
+- finanzas y reportes
+- configuración de sucursal y clínica
 
 ## Arquitectura actual
 
-### 1. Frontend monolítico
-El proyecto no está separado en componentes ni en carpetas de frontend/backend. Todo se concentra en un solo archivo:
+### 1. Prototipo HTML local
+La versión inicial del sistema está contenida en el archivo [KlinikProVF.html](KlinikProVF.html). Tiene las siguientes características:
 
-- `KlinikProVF.html`
+- interfaz web completa en una sola vista/archivo
+- CSS integrado en la misma página
+- lógica JavaScript embebida
+- persistencia local con IndexedDB
+- exportación/importación de datos JSON y CSV
+- flujo operativo para pacientes, citas y caja
 
-Dentro de ese archivo se integran:
+Este prototipo funciona como una herramienta de gestión local y sin backend.
 
-- HTML estructural
-- CSS para diseño visual y UI responsiva
-- JavaScript para toda la lógica de negocio
-- IndexedDB para almacenamiento local
+### 2. Proyecto Java/Spring Boot
+La carpeta [klinikpro-vf](klinikpro-vf) representa la evolución del proyecto hacia una arquitectura más sólida. Actualmente incluye:
 
-### 2. Persistencia de datos
-La información se guarda en IndexedDB con varias colecciones, entre ellas:
+- Java 25
+- Spring Boot 4.1.1
+- PostgreSQL 16
+- Flyway
+- JPA
+- Actuator
+- validación
 
-- pacientes
-- appointments
-- transactions
-- expenses
-- cashcounts
-- receivables
-- payables
-- bankmovs
-- services
-- specialists
-- treatments
-- cashsessions
-- branches
-- settings
+La base funciona con una estructura típica de Spring Boot, con un controlador de prueba y configuración de base de datos.
 
-Esto significa que la aplicación funciona sin conexión a un servidor central y guarda datos directamente en el navegador.
+## Estructura principal del proyecto Java
 
-### 3. Modelo de negocio
-La lógica de la app está construida para operar con:
+### Directorio src/main/java
+Incluye la aplicación principal y la capa web inicial:
 
-- sucursales/múltiples sedes locales
-- pacientes con expediente básico
-- especialistas y tratantes
-- servicios/tratamientos
-- citas con serie y disponibilidad por horario
-- caja por sesión día/fecha
-- reportes financieros
+- `KlinikproVfApplication` — clase principal de Spring Boot
+- `PingController` — endpoint de prueba para verificar la aplicación
 
-## Funcionalidades visibles en la app
+### Directorio src/test/java
+Tiene la prueba base de arranque del proyecto:
 
-### Dashboard
-El panel principal muestra:
+- `KlinikproVfApplicationTests`
 
-- citas del día
-- ingresos del día
-- gastos del día
-- pacientes registrados
-- cuentas por cobrar
-- cuentas por pagar
-- próximas citas
+## Cómo arrancar el proyecto actual
 
-### Pacientes
-Permite:
+Se recomienda usar Docker para la base de datos y luego iniciar la app con Maven:
 
-- registrar nuevo paciente
-- editar información básica
-- buscar por nombre, teléfono o código
-- agregar notas clínicas
-- marcar si viene por aseguradora o derivación
-- asignar especialista o tratante
-- generar reportes por paciente
+```bash
+docker compose up -d db
+./mvnw spring-boot:run
+```
 
-### Agenda
-Incluye:
+El proyecto está configurado para conectarse a PostgreSQL en el puerto 5432 con estas credenciales:
 
-- calendario mensual
-- selección de fecha
-- disponibilidad por horario
-- programación de citas
-- citas en serie
-- filtros por todas, hoy, próximas y pendientes
-- exportación CSV de agenda
+- base de datos: `klinikpro`
+- usuario: `klinik`
+- password: `klinik_dev`
 
-### Caja
-La funcionalidad financiera cubre:
+## Endpoints relevantes
 
-- apertura de caja
-- cierre de caja
-- registro de ingresos por cobro
-- registro de gastos
-- cálculo de arqueo
-- pagos mixtos con varias formas de pago
-- manejo de servicios y conceptos adicionales
+La app incluye un endpoint base para comprobación:
 
-### Finanzas
-Incluye:
+- `/api/ping`
 
-- cuentas por cobrar
-- cuentas por pagar
-- movimientos bancarios
-- estados financieros básicos
-- conciliación
+Este endpoint responde con un JSON con información del servicio y estado.
 
-### Ajustes
-El módulo de configuración permite:
+## Estado de desarrollo
 
-- cambiar nombre de la sucursal
-- configurar clínica y responsable
-- cargar logo para reportes
-- activar sincronización local CSV
-- exportar e importar respaldo .json
-- reiniciar todos los datos
+El repositorio está en una etapa inicial de transformación:
 
-## Requisitos actuales
+- el prototipo HTML es funcional y documentado como base del negocio
+- el proyecto Spring Boot representa la migración técnica que se está preparando
+- la Fase actual es de consolidación, configuración y documentación
 
-### Para usar la app
-Se requiere un navegador moderno, preferentemente:
+## Observaciones importantes
 
-- Chrome
-- Edge
+Se recomienda considerar lo siguiente:
 
-### Compatibilidad recomendada
-La aplicación menciona explícitamente que la sincronización con carpeta local CSV funciona mejor en:
+- el prototipo HTML no es la solución final en producción
+- la versión Spring Boot aún está en base de arranque y estructura inicial
+- la base de datos aún debe ser validada con una ejecución completa del proyecto
+- la evolución del sistema debería contemplar separación por capas, autenticación, permisos, persistencia real y despliegue profesional
 
-- Chrome
-- Edge
+## Historial breve del repositorio
 
-Firefox y Safari tienen limitaciones para esa funcionalidad.
+El proyecto tiene un historial muy corto en Git, con dos commits principales:
 
-## Cómo se usa actualmente
+- `426a19a` — `feat: Initialize KlinikProVF project with Spring Boot and PostgreSQL`
+- `2fb05e3` — `first commit`
 
-1. Abrir `KlinikProVF.html` en el navegador.
-2. La aplicación carga la interfaz principal.
-3. El sistema identifica una sucursal activa por defecto.
-4. Los datos se guardan automáticamente en IndexedDB.
-5. Se puede hacer respaldo y exportación manual o automática.
+## Objetivo del proyecto
 
-## Ventajas del estado actual
+KlinikProBase busca consolidar la gestión clínica en una herramienta útil, moderna y adaptable, partiendo de un flujo real de clínica y evolucionándolo hacia una solución web más estable, segura y mantenible.
 
-- No requiere instalación ni backend
-- Es rápida de desplegar localmente
-- Funciona sin conexión a internet
-- Tiene una interfaz enfocada en clínica y caja
-- Permite respaldo y exportación sencilla
+## Autoría
 
-## Limitaciones observadas
-
-El proyecto tiene varias características que conviene reconocer con claridad:
-
-- No es una aplicación multiusuario ni compartida en red
-- No existe backend, API REST ni base de datos centralizada
-- Los datos quedan ligados al navegador y equipo donde se usan
-- La persistencia es local; no hay autenticación de usuarios ni roles complejos
-- La lógica está concentrada en un solo archivo HTML, lo que puede crecer y volverse difícil de mantener
-- El proyecto parece ser más una herramienta de gestión operativa local que una solución empresarial completa
-
-## Observación de diseño
-
-El sistema está más orientado a una clínica privada o consultorio con flujo operativo diario que a una solución de gran escala multiempresa. Tiene un enfoque práctico en:
-
-- atención clínica
-- agenda
-- caja
-- reportes inmediatos
-- gestión local de expediente
-
-## Nombre del proyecto
-
-El nombre del proyecto en este README queda definido como:
-
-- `KlinikProBase`
-
-Esto representa la base funcional actual del sistema antes de cualquier evolución, refinamiento o reestructuración.
-
-## Recomendación de evolución
-
-Si se quiere convertir esta base en un proyecto más robusto, el siguiente paso natural sería:
-
-1. separar frontend y backend
-2. migrar a una base de datos real (MySQL, PostgreSQL, SQLite u otra)
-3. añadir autenticación
-4. definir roles y permisos
-5. mover lógica a módulos o archivos organizados
-6. preparar despliegue web profesional
-
-## Resumen breve
-
-KlinikProBase es una aplicación web de gestión clínica local, construida en un solo archivo HTML, con almacenamiento en IndexedDB, muy enfocada en administración de pacientes, agenda, caja y reportes operativos. Actualmente funciona como una herramienta de escritorio web local, útil y funcional, pero limitada por su arquitectura monolítica y por no contar con backend ni sincronización centralizada.
-
-## Licencia y autoría
-
-El propio archivo de la app indica que fue desarrollado por:
+El nombre y la marca del sistema están ligados a:
 
 - Cytohelix Systems
-- Autor y fundador: Luis Fernando Mendoza Gómez
+- Luis Fernando Mendoza Gómez
 
-El documento actual se deja como base documental del proyecto y puede servir como punto de partida para una versión más modular y profesional.
+## Resumen
+
+El proyecto actualmente combina dos etapas:
+
+- una base funcional local y operativa en HTML
+- una base técnica nueva en Spring Boot + PostgreSQL para evolucionarlo
+
+Esto hace que el repositorio sea una plataforma de transición entre una solución rápida y una versión más profesional y escalable.
