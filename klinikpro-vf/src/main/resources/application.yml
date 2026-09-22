@@ -16,3 +16,7 @@ management:
                 include: health,info
 app:
     version: VF1-0.0.1
+security:
+    jwt:
+        secret: "CAMBIA_ESTO_por_una_cadena_larga_de_al_menos_64_caracteres_aleatorios_123456"
+        expiration-ms: 86400000   # 24 h
