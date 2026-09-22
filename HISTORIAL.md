@@ -1,134 +1,146 @@
-# Historial de modificaciones y commits
+# Historial completo de modificaciones
 
-Este documento registra el historial de cambios relevantes del proyecto KlinikProBase.
+Este documento registra el estado real del proyecto KlinikProBase, incluyendo la base funcional del prototipo y la evolución hacia Spring Boot con autenticación y PostgreSQL.
 
-## Información general
+## Información del repositorio
 
 - Proyecto: KlinikProBase
-- Repositorio: Git local
 - Rama principal: `main`
 - Fecha de revisión: 2026-09-21
+- Estado observado: proyecto con dos líneas de trabajo activas
 
-## Historial de commits
+## Visión general histórica
 
-### 1) 426a19a
+El proyecto se puede dividir en dos etapas:
+
+1. Etapa inicial: prototipo local de clínica en HTML/JS con almacenamiento local
+2. Etapa actual: migración técnica a Java/Spring Boot con PostgreSQL y seguridad JWT
+
+## Primera etapa: prototipo funcional
+
+El archivo [KlinikProVF.html](KlinikProVF.html) representa la base funcional del sistema. Esta etapa quedó enfocada en:
+
+- gestión de pacientes
+- citas y agenda
+- disponibilidad por días y horarios
+- caja
+- ingresos y gastos
+- controles financieros
+- reportes y exportación
+- multi-sucursal local
+- almacenamiento en IndexedDB
+
+Esta versión fue una solución operativa local y sin backend, muy útil para validar el flujo clínico.
+
+## Segunda etapa: evolución técnica
+
+La carpeta [klinikpro-vf](klinikpro-vf) representa la base de una nueva fase del proyecto, preparada para una arquitectura más robusta.
+
+### Cambios observados en esta etapa
+
+- migración a Java
+- uso de Spring Boot
+- conexión a PostgreSQL con Docker Compose
+- uso de JPA y Flyway
+- configuración de seguridad con Spring Security
+- autenticación basada en JWT
+- soporte multi-tenant para clínica y sucursal
+- estructura inicial de usuarios, roles y contexto de sesión
+
+## Cambios de código concretos observados
+
+### Seguridad y autenticación
+
+Se identificó la incorporación de: 
+
+- `AuthController` para registro y login
+- `JwtService` para emitir y validar tokens
+- `JwtFilter` para autenticación por request
+- `SecurityConfig` para proteger rutas y permitir endpoints públicos
+- `User` para persistencia de usuarios
+- `Role` con roles de clínica
+- `TenantContext` para contexto multi-tenant
+- `MeController` para devolver información del usuario autenticado
+
+Esto marca un avance importante respecto al prototipo inicial.
+
+## Commits reales registrados en Git
+
+### 1. `426a19a`
 
 - Título: `feat: Initialize KlinikProVF project with Spring Boot and PostgreSQL`
-- Fecha: registro actual del repositorio
 - Descripción:
-  - inicialización del proyecto Spring Boot
+  - inicio del proyecto Spring Boot
   - configuración de PostgreSQL
-  - integración con Flyway/JPA
-  - base del proyecto moderno de KlinikPro
+  - base para persistencia real
+  - preparación de arquitectura moderna
 
-### 2) 2fb05e3
+### 2. `2fb05e3`
 
 - Título: `first commit`
-- Fecha: registro inicial del repositorio
 - Descripción:
-  - primer commit base del proyecto
   - inicio del repositorio Git
-  - arranque del proyecto y estructura inicial
+  - arranque del proyecto en base inicial
 
-## Resumen del historial
+## Resumen cronológico
 
-El historial real del repositorio es corto, pero refleja una evolución clara:
+### Fecha inicial
+- creación del repositorio con la base del proyecto
 
-- primer commit inicial
-- luego una base Spring Boot con PostgreSQL
+### Etapa siguiente
+- inicio de la versión en Spring Boot
+- configuración de PostgreSQL
+- incorporación de autenticación y estructura multi-tenant
 
-Esto indica que el proyecto pasó de una idea base a una estructura más madura para backend y persistencia.
+## Estado funcional actual
 
-## Cambios observados en el proyecto
+El repositorio presenta una mezcla de:
 
-### Prototipo base HTML
+- solución visual local y validada operativamente
+- proyecto técnico backend en preparación
 
-Se detectó una versión funcional desarrollada en un archivo HTML, con lógica local para:
+Esto indica que el proyecto se encuentra en una fase de transición entre la etapa conceptual/funcional y la etapa de estructura enterprise.
 
-- pacientes
-- agenda
-- citas
-- caja
-- finanzas
-- reportes
-- exportación
-- almacenamiento local
+## Registro de modificaciones recomendadas para seguir en el futuro
 
-### Evolución técnica
-
-Posteriormente se inició una versión en Java con Spring Boot, estructurada para:
-
-- manejar base de datos PostgreSQL
-- usar JPA
-- usar Flyway
-- preparar API y futura lógica empresarial
-
-## Registro de modificaciones recomendadas
-
-A continuación se deja una plantilla para ir actualizando este historial conforme avancen los cambios:
-
-### Formato sugerido
+Se recomienda mantener este historial con el siguiente formato:
 
 ```md
-### [fecha] - [versión o etiqueta]
-- Cambio: [descripción general]
-- Archivos principales: [lista]
-- Resultado: [estado o impacto]
-- Commit relacionado: [hash]
+### [fecha] - [versión]
+- Cambio: descripción del cambio principal
+- Archivos clave: lista
+- Impacto: funcional / técnico / seguridad / infraestructura
+- Commit: hash o referencia
 ```
 
-## Ejemplo de seguimiento futuro
+## Ejemplo de actualización futura
 
 ```md
 ### 2026-09-21 - v0.1.0
-- Cambio: creación del README y estructura documental del proyecto
-- Archivos principales: README.md, HISTORIAL.md
-- Resultado: documentación inicial del repositorio
-- Commit relacionado: pendiente de registrar
+- Cambio: documentación inicial del proyecto y actualización del estado de autenticación
+- Archivos clave: README.md, HISTORIAL.md, AuthController.java, SecurityConfig.java
+- Impacto: documentación y estructura base de seguridad
+- Commit: pendiente de registrar
 ```
 
-## Observación importante
+## Comentario importante
 
-Este documento debe actualizarse cada vez que se hagan cambios relevantes en:
+Aunque el repositorio tiene pocos commits, refleja una evolución muy clara:
 
-- configuración del proyecto
-- modelo de datos
-- dependencias
-- API
-- estructura de frontend/backend
-- despliegue
-- integración con PostgreSQL
-- correcciones importantes
+- del prototipo ligero al proyecto estructurado
+- de almacenamiento local a persistencia real
+- de sistema manual a base con seguridad y tenant awareness
 
-## Estado actual
+## Estado final del historial
 
-Actualmente el repositorio presenta estas dos líneas de trabajo simultáneas:
+El historial documental actual debe entenderse como base de control y trazabilidad para futuras mejoras. Desde ese punto, cada cambio significativo debe agregarse aquí con:
 
-1. Prototipo funcional local HTML
-2. Base técnica Spring Boot con PostgreSQL
+- fecha
+- descripción
+- archivos afectados
+- impacto del cambio
+- referencia del commit
 
-Por lo tanto, el historial debe seguir registrando la transición de una versión operativa local a una estructura más robusta y preparada para producción.
+## Resumen final
 
----
-
-## Registro de cambios del equipo
-
-Se recomienda completar este bloque con cada modificación relevante:
-
-```md
-### [fecha]
-- Autor:
-- Cambio:
-- Archivos modificados:
-- Commit:
-- Comentario:
-```
-
-## Último estado verificado
-
-Se revisó el histórico de Git con el siguiente resultado:
-
-- `426a19a` — `feat: Initialize KlinikProVF project with Spring Boot and PostgreSQL`
-- `2fb05e3` — `first commit`
-
-Esto confirma que el proyecto tiene una base inicial clara y un punto de arranque de evolución técnica.
+El proyecto ha pasado por una etapa operativa local y actualmente avanza en una etapa técnica más sólida con Spring Boot, PostgreSQL, JWT y estructura de usuarios/roles. El historial debe seguir creciendo con cada modificación importante para mantener trazabilidad y control del desarrollo.
