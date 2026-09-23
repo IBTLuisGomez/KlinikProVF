@@ -1,0 +1,13 @@
+# JVM crash dumps (aparecen si `mvn`/el JDK se queda sin memoria nativa al compilar)
+hs_err_pid*.log
+replay_pid*.log
+*.hprof
+
+# Maven/IDE (por si algún módulo futuro queda fuera de klinikpro-vf/, que ya trae el suyo)
+target/
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/

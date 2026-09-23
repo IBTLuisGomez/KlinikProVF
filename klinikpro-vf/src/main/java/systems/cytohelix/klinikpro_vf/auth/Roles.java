@@ -20,4 +20,7 @@ public final class Roles {
 
     /** Solo el dueño/administrador de la cuenta. */
     public static final String ADMIN_ONLY = "hasRole('ADMIN')";
+
+    /** Liderazgo + médico (FISIO) — acciones clínicas como iniciar/finalizar atención. Excluye RECEPCION. */
+    public static final String CLINICAL = "hasAnyRole('ADMIN','COORDINADOR','FISIO')";
 }

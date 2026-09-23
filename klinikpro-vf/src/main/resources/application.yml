@@ -31,6 +31,16 @@ app:
   cors:
     allowed-origins: "http://localhost:5500,http://127.0.0.1:5500,http://localhost:3000,http://localhost:5173,null"
 
+agenda:
+  min-lead-minutes: 120        # anticipación mínima para agendar (2h, ajustable por especialidad más adelante)
+  max-lead-days: 60            # anticipación máxima
+  cancellation-min-hours: 24   # plazo para cancelar sin cargo
+  no-show-tolerance-minutes: 15
+  no-show-check-interval-ms: 300000   # cada 5 min el job barre citas vencidas (CU-08 automático)
+
+caja:
+  card-commission-rate: 0.035   # 3.5% comisión de terminal, se suma al total (la absorbe el cliente)
+
 security:
   jwt:
     secret: "CAMBIA_ESTO_por_una_cadena_larga_de_al_menos_64_caracteres_aleatorios_1234567890"
