@@ -1,0 +1,727 @@
+<!DOCTYPE html><html lang="es" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-background":"#0b1c30","surface-container-low":"#eff4ff","secondary":"#006c49","surface-dim":"#cbdbf5","on-secondary-fixed":"#002113","tertiary-container":"#005b8b","on-secondary":"#ffffff","surface-container":"#e5eeff","on-secondary-container":"#00714d","primary-fixed":"#cde5ff","secondary-fixed-dim":"#4edea3","on-primary":"#ffffff","surface":"#f8f9ff","primary-container":"#0f5b8b","error":"#ba1a1a","error-container":"#ffdad6","primary-fixed-dim":"#95ccff","tertiary-fixed-dim":"#93ccff","on-surface":"#0b1c30","surface-variant":"#d3e4fe","surface-container-high":"#dce9ff","on-error":"#ffffff","secondary-fixed":"#6ffbbe","inverse-on-surface":"#eaf1ff","on-tertiary-container":"#9fd1ff","inverse-surface":"#213145","outline-variant":"#c1c7d0","surface-bright":"#f8f9ff","primary":"#00436a","on-secondary-fixed-variant":"#005236","background":"#f8f9ff","on-tertiary":"#ffffff","inverse-primary":"#95ccff","tertiary-fixed":"#cce5ff","outline":"#717880","on-surface-variant":"#41474f","on-tertiary-fixed-variant":"#004b73","surface-container-highest":"#d3e4fe","on-primary-fixed-variant":"#004a75","on-error-container":"#93000a","on-primary-container":"#a2d1ff","on-primary-fixed":"#001d32","surface-container-lowest":"#ffffff","surface-tint":"#1d6393","on-tertiary-fixed":"#001d31","tertiary":"#004368","secondary-container":"#6cf8bb"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"space-xl":"2.5rem","space-xs":"0.25rem",gutter:"1.5rem",margin:"2rem","space-sm":"0.5rem","space-md":"1rem","space-lg":"1.5rem"},fontFamily:{"headline-xl":["Plus Jakarta Sans"],"body-md":["Inter"],"headline-lg-mobile":["Plus Jakarta Sans"],"label-sm":["Inter"],"headline-md":["Plus Jakarta Sans"],"label-lg":["Inter"],"body-lg":["Inter"],"headline-sm":["Plus Jakarta Sans"],"label-md":["Inter"],"headline-lg":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"body-sm":["Inter"]},fontSize:{"headline-xl":["36px",{lineHeight:"44px",letterSpacing:"-0.02em",fontWeight:"700"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"headline-lg-mobile":["22px",{lineHeight:"30px",letterSpacing:"0",fontWeight:"600"}],"label-sm":["10px",{lineHeight:"14px",letterSpacing:"0.04em",fontWeight:"600"}],"headline-md":["20px",{lineHeight:"28px",letterSpacing:"-0.005em",fontWeight:"600"}],"label-lg":["14px",{lineHeight:"20px",letterSpacing:"0.01em",fontWeight:"600"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"headline-sm":["16px",{lineHeight:"24px",fontWeight:"600"}],"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"500"}],"headline-lg":["28px",{lineHeight:"36px",letterSpacing:"-0.01em",fontWeight:"600"}],"headline-xl-mobile":["28px",{lineHeight:"36px",letterSpacing:"-0.01em",fontWeight:"700"}],"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between py-space-md"><div class="flex flex-col"><div class="px-space-lg py-space-sm flex items-center gap-space-sm mb-space-md"><img alt="Logo Oficial KlinikPro Auténtico" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XE05T0REYPACo6vO4vbbjvApRyuI0Fh434DhhSR2iwBPCvWPb6DVeM-Hip016ZrW72dxDWnrcZOKHJC7GJL8BgqjpjJUlyofKBWQX_3gQ4YgXHYHUlcV-Nq3dhMxrK7Xnl8sar7loOh-Fv7Pxy8denLR9OLUF-RAWl7VVAhtiuCDbEUSwAGV3xXpQ6L2XS9nf4O9I4ZzrA6ei8UAD1h2e1mFjlkoqs0Wg0rLrbscXm"></div><div class="px-space-md mb-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold tracking-wider">Gestión Clínica</span></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary text-on-primary shadow-sm font-medium"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-label-lg text-label-lg">Dashboard</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="pacientes-e-historias" href="#"><span class="material-symbols-outlined text-[20px]">patient_list</span><span class="font-label-lg text-label-lg">Pacientes e Historias</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="agenda-de-turnos" href="#"><span class="material-symbols-outlined text-[20px]">calendar_today</span><span class="font-label-lg text-label-lg">Agenda de Turnos</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="facturacion-y-recetas" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span class="font-label-lg text-label-lg">Facturación y Recetas</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="reportes-clinicos" href="#"><span class="material-symbols-outlined text-[20px]">analytics</span><span class="font-label-lg text-label-lg">Reportes Clínicos</span></a></nav><div class="px-space-md mt-space-md mb-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold tracking-wider">Administración</span></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary text-on-primary shadow-sm font-medium"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="configuracion" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span class="font-label-lg text-label-lg">Configuración</span></a></nav></div><div class="px-space-md pt-space-sm"><div class="bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-2 h-2 rounded-full bg-secondary"></div><div class="flex flex-col"><span class="font-label-sm text-label-sm text-on-surface font-semibold">Servidor Clínico</span><span class="font-label-sm text-label-sm text-on-surface-variant">En línea · v4.12.0</span></div></div><span class="material-symbols-outlined text-on-surface-variant text-[18px]">verified</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-lg flex-1 max-w-xl"><div class="relative w-full max-w-md"><span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span><input class="w-full h-10 pl-11 pr-space-md rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant text-body-sm font-body-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-[0_1px_8px_rgba(0,0,0,0.02)] transition-all" placeholder="Buscar por DNI, Nombre o N° de Historia Clínica..." type="text"></div><div class="hidden xl:flex items-center gap-space-xs bg-surface-container-low px-space-md py-space-xs rounded-lg cursor-pointer hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-primary text-[18px]">apartment</span><div class="flex flex-col text-left"><span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Sede</span><span class="font-label-md text-label-md text-on-surface font-semibold truncate max-w-[190px]">Sede Central - Torre Médica Norte</span></div><span class="material-symbols-outlined text-on-surface-variant text-[18px]">expand_more</span></div></div><div class="flex items-center gap-space-md"><button class="flex items-center gap-space-xs bg-primary hover:bg-primary-container text-on-primary hover:text-on-primary-container px-space-md h-10 rounded-lg shadow-sm transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">add</span><span class="font-label-md text-label-md font-semibold">Nueva Consulta</span></button><div class="relative flex items-center justify-center"><button class="w-10 h-10 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full ring-2 ring-surface"></span></button></div><div class="flex items-center gap-space-sm pl-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpIQ4hAHznkSYu5Qd-RzcCxZLVtRmv_7t3bVTwntf3Bu-GZyr10qrUhp3rT3HGdXpxls7k2M3rb8nyY26deinblBbF4jA_pGznwlNUF34HeyEljZc9F0TUAbn3ZI1i_FtwW3Y6PQsyJ56x1p87DzaMteXorOesReMHi2oJlVHL5u3cRF_3Y0LKnNc7hZ05sE0n_VHewueKRky8Fw2oA53IkwatvIIlN5ixDY_KHat8u6FmBwWdiSFD"><div class="hidden md:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-bold leading-tight">Dra. Anya Sharma</span><span class="font-label-sm text-label-sm text-secondary font-medium leading-none">Cardiología</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen px-space-lg py-space-lg"><div class="flex flex-col w-full gap-space-lg">
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md">
+<span class="">Gestión Financiera</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold">Facturación y Recetas Digitales</span>
+</div>
+<div class="flex items-baseline gap-space-md mt-1">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Liquidaciones &amp; Recetas Clínicas</h1>
+<span class="font-label-sm text-label-sm uppercase px-2 py-0.5 rounded-full bg-secondary/10 text-secondary font-bold">Ciclo Fiscal Activo</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Control de comprobantes fiscales, trazabilidad de aseguradoras y dispensación de prescripciones electrónicas.</p>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="flex items-center gap-space-xs px-space-md h-10 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-all shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">download</span>
+<span class="">Exportar RIPS / FE</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md h-10 rounded-lg bg-primary hover:bg-primary-container text-on-primary hover:text-on-primary-container font-label-md text-label-md font-semibold transition-all shadow-sm" id="openRxDrawerBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">prescriptions</span>
+<span class="">Nueva Receta Digital</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<div class="relative overflow-hidden bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Total Facturado Mes</span>
+<span class="font-headline-lg text-headline-lg text-on-surface mt-1">$48,250,000</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium mt-0.5">≈ USD $12,410 · Tasa 3,887 COP</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">account_balance_wallet</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> +14.2% vs ciclo ant.
+        </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">92% Copagos recaudados</span>
+</div>
+<div class="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-primary-fixed/30 pointer-events-none blur-2xl"></div>
+</div>
+<div class="relative overflow-hidden bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Reclamaciones Aprobadas</span>
+<div class="flex items-baseline gap-space-xs mt-1">
+<span class="font-headline-lg text-headline-lg text-secondary">96.4%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">éxito global</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium mt-0.5">Glosa estimada: &lt; 2.1%</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[22px]">verified_user</span>
+</div>
+</div>
+<div class="mt-space-md flex flex-col gap-1">
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 96.4%"></div>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span class="">Sanitas 98.1%</span>
+<span class="">Sura 95.8%</span>
+</div>
+</div>
+</div>
+<div class="relative overflow-hidden bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Recetas Digitales (RXP)</span>
+<span class="font-headline-lg text-headline-lg text-on-surface mt-1">412</span>
+<span class="font-label-sm text-label-sm text-secondary flex items-center gap-1 font-semibold mt-0.5">
+<span class="material-symbols-outlined text-[14px]">qr_code_2</span> 100% trazables con QR
+          </span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-primary-fixed/40 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">medication</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">388 dispensadas en red</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold">24 en tránsito</span>
+</div>
+</div>
+<div class="relative overflow-hidden bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-error font-semibold">Pendiente de Auditoría</span>
+<span class="font-headline-lg text-headline-lg text-error mt-1">14 órdenes</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium mt-0.5">Monto en pausa: $8,420,000</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-error/10 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[22px]">pending_actions</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-error font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span> 4 vencen en 48 hrs
+        </span>
+<button class="font-label-sm text-label-sm text-primary hover:underline font-semibold" type="button">Auditar ahora</button>
+</div>
+</div>
+</div>
+<div class="flex flex-col xl:flex-row items-start gap-space-lg relative">
+<div class="flex-1 w-full flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest rounded-xl p-space-sm shadow-sm flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs overflow-x-auto pb-1 sm:pb-0">
+<button class="tab-btn px-space-md py-space-xs rounded-lg font-label-md text-label-md font-semibold transition-all bg-primary text-on-primary shadow-sm" data-tab="orders" type="button">
+            Órdenes de Consulta y Copagos
+          </button>
+<button class="tab-btn px-space-md py-space-xs rounded-lg font-label-md text-label-md font-medium text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-tab="rx" type="button">
+            Emisión de Recetas Digitales (RXP)
+          </button>
+<button class="tab-btn px-space-md py-space-xs rounded-lg font-label-md text-label-md font-medium text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-tab="settlements" type="button">
+            Liquidación a Aseguradoras / Obras Sociales
+          </button>
+</div>
+<div class="flex items-center gap-space-xs self-end sm:self-auto">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Lote: <strong class="text-on-surface">#2024-Q3-SUR</strong></span>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container" title="Refrescar datos" type="button">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-space-md">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full h-10 pl-10 pr-space-md rounded-lg bg-surface-container-low text-on-surface placeholder:text-on-surface-variant font-body-sm text-body-sm focus:outline-none focus:bg-surface-container transition-all" id="billingSearch" placeholder="Buscar por N° Factura, Paciente, Autorización o Código CUPS / Nomenclador..." type="text">
+</div>
+<div class="flex items-center gap-space-xs flex-wrap">
+<div class="flex items-center gap-1 bg-surface-container-low px-space-sm py-1 rounded-lg">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Aseguradora:</span>
+<select class="bg-transparent font-label-md text-label-md text-on-surface focus:outline-none cursor-pointer">
+<option value="all">Todas (Sanitas, Sura, MedPlus, Part.)</option>
+<option value="sanitas">Sanitas EPS</option>
+<option value="sura">Sura Medicina Prepagada</option>
+<option value="medplus">MedPlus MP</option>
+<option value="particular">Privado / Particular</option>
+</select>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-low px-space-sm py-1 rounded-lg">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Estado:</span>
+<select class="bg-transparent font-label-md text-label-md text-on-surface focus:outline-none cursor-pointer">
+<option value="all">Todos los estados</option>
+<option value="liquidated">Liquidado</option>
+<option value="audit">Pendiente Auditoría</option>
+<option value="rejected">Rechazado - Error Código</option>
+<option value="collected">Cobrado</option>
+</select>
+</div>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center bg-surface-container-low hover:bg-surface-container text-on-surface-variant transition-colors" title="Filtros avanzados" type="button">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-md rounded-l-lg">N° Comprobante</th>
+<th class="py-space-sm px-space-xs">Fecha / Hora</th>
+<th class="py-space-sm px-space-md">Paciente / DNI</th>
+<th class="py-space-sm px-space-md">Cobertura</th>
+<th class="py-space-sm px-space-md">Prestación / Código</th>
+<th class="py-space-sm px-space-xs text-right">Copago</th>
+<th class="py-space-sm px-space-xs text-right">Monto Aseguradora</th>
+<th class="py-space-sm px-space-md text-center">Estado</th>
+<th class="py-space-sm px-space-md text-center rounded-r-lg">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container font-body-sm text-body-sm text-on-surface">
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-primary">FE-2024-8841</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Aut: #SAN-99312</span>
+</div>
+</td>
+<td class="py-space-sm px-space-xs">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md">Hoy, 10:45 AM</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sede Norte</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary font-bold text-[11px] flex items-center justify-center">
+                      MV
+                    </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Mateo Valencia R.</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">CC 1.020.449.120 · 48a</span>
+</div>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Sanitas EPS
+                  </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-medium text-on-surface truncate max-w-[190px]">Ecocardiograma Doppler Color</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">CUPS: 88.1.2.01</span>
+</div>
+</td>
+<td class="py-space-sm px-space-xs text-right">
+<span class="font-label-md text-label-md font-semibold text-secondary">$34,500</span>
+</td>
+<td class="py-space-sm px-space-xs text-right">
+<span class="font-label-md text-label-md font-bold text-on-surface">$245,000</span>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary/10 text-secondary font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Liquidado
+                  </span>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors" title="Ver Factura PDF" type="button">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-secondary transition-colors" onclick="quickFillPatient('Mateo Valencia R.', '1.020.449.120', 'Sanitas EPS', 'Carvedilol 6.25mg / 12h')" title="Generar Receta QR" type="button">
+<span class="material-symbols-outlined text-[18px]">qr_code_2</span>
+</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container" title="Detalle y Auditoría" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-primary">FE-2024-8840</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Aut: #SUR-41092</span>
+</div>
+</td>
+<td class="py-space-sm px-space-xs">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md">Hoy, 09:30 AM</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sede Norte</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary font-bold text-[11px] flex items-center justify-center">
+                      CL
+                    </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Camila Lozano P.</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">CC 52.883.109 · 36a</span>
+</div>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-primary"></span> Sura Prepagada
+                  </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-medium text-on-surface truncate max-w-[190px]">Consulta Especialista Cardiología</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">CUPS: 89.0.2.02</span>
+</div>
+</td>
+<td class="py-space-sm px-space-xs text-right">
+<span class="font-label-md text-label-md font-semibold text-secondary">$22,000</span>
+</td>
+<td class="py-space-sm px-space-xs text-right">
+<span class="font-label-md text-label-md font-bold text-on-surface">$160,000</span>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Cobrado
+                  </span>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors" title="Ver Factura PDF" type="button">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-secondary transition-colors" onclick="quickFillPatient('Camila Lozano P.', '52.883.109', 'Sura Prepagada', 'Losartán Potásico 50mg / 24h')" title="Generar Receta QR" type="button">
+<span class="material-symbols-outlined text-[18px]">qr_code_2</span>
+</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container" title="Detalle" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-primary">FE-2024-8839</span>
+<span class="font-label-sm text-label-sm text-error font-semibold">Sin Autorización</span>
+</div>
+</td>
+<td class="py-space-sm px-space-xs">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md">Hoy, 08:15 AM</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sede Norte</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-full bg-error/20 text-error font-bold text-[11px] flex items-center justify-center">
+                      JA
+                    </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Jorge Andrés B.</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">CC 79.330.124 · 55a</span>
+</div>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-on-tertiary-container"></span> MedPlus MP
+                  </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-medium text-on-surface truncate max-w-[190px]">Holter de Ritmo Cardíaco 24H</span>
+<span class="font-label-sm text-label-sm text-error font-bold">CUPS: 89.5.0.01 (Inválido)</span>
+</div>
+</td>
+<td class="py-space-sm px-space-xs text-right">
+<span class="font-label-md text-label-md font-semibold text-on-surface-variant">$0</span>
+</td>
+<td class="py-space-sm px-space-xs text-right">
+<span class="font-label-md text-label-md font-bold text-error">$310,000</span>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Rechazado - Error Código
+                  </span>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="px-2 py-1 rounded bg-primary text-on-primary text-[12px] font-label-sm font-semibold hover:bg-primary-container transition-all flex items-center gap-1" title="Refacturar y Corregir" type="button">
+<span class="material-symbols-outlined text-[14px]">edit_note</span> Refacturar
+                    </button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container" title="Historial de glosa" type="button">
+<span class="material-symbols-outlined text-[18px]">history</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-primary">FE-2024-8838</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Aut: #AUD-00918</span>
+</div>
+</td>
+<td class="py-space-sm px-space-xs">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md">Ayer, 04:20 PM</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sede Norte</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-primary font-bold text-[11px] flex items-center justify-center">
+                      SR
+                    </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Silvia Restrepo G.</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">CC 43.109.812 · 62a</span>
+</div>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Sanitas EPS
+                  </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-medium text-on-surface truncate max-w-[190px]">Prueba de Esfuerzo Cardiovascular</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">CUPS: 89.5.1.00</span>
+</div>
+</td>
+<td class="py-space-sm px-space-xs text-right">
+<span class="font-label-md text-label-md font-semibold text-secondary">$45,000</span>
+</td>
+<td class="py-space-sm px-space-xs text-right">
+<span class="font-label-md text-label-md font-bold text-on-surface">$290,000</span>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span> Pendiente Auditoría
+                  </span>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-primary" title="Ver Factura PDF" type="button">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-secondary" onclick="quickFillPatient('Silvia Restrepo G.', '43.109.812', 'Sanitas EPS', 'Metoprolol Tartrato 50mg')" title="Generar Receta QR" type="button">
+<span class="material-symbols-outlined text-[18px]">qr_code_2</span>
+</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container" title="Opciones" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-primary">FE-2024-8837</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Factura Contado</span>
+</div>
+</td>
+<td class="py-space-sm px-space-xs">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md">Ayer, 02:00 PM</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sede Norte</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-full bg-primary/20 text-primary font-bold text-[11px] flex items-center justify-center">
+                      DF
+                    </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">David Fajardo T.</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">CC 1.114.209.431 · 29a</span>
+</div>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-on-surface-variant"></span> Privado / Particular
+                  </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-medium text-on-surface truncate max-w-[190px]">Chequeo Ejecutivo Cardiovascular</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">CUPS: 89.0.3.10</span>
+</div>
+</td>
+<td class="py-space-sm px-space-xs text-right">
+<span class="font-label-md text-label-md font-semibold text-on-surface">$480,000</span>
+</td>
+<td class="py-space-sm px-space-xs text-right">
+<span class="font-label-md text-label-md text-on-surface-variant">$0</span>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary/10 text-secondary font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Cobrado
+                  </span>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-primary" title="Ver Factura PDF" type="button">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-secondary" onclick="quickFillPatient('David Fajardo T.', '1.114.209.431', 'Privado / Particular', 'Rosuvastatina 10mg noche')" title="Generar Receta QR" type="button">
+<span class="material-symbols-outlined text-[18px]">qr_code_2</span>
+</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container" title="Opciones" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-sm pt-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="">Mostrando <strong>5</strong> de <strong>412</strong> órdenes del ciclo actual</span>
+<div class="flex items-center gap-1">
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface disabled:opacity-40" disabled="" type="button">Anterior</button>
+<button class="w-7 h-7 rounded bg-primary text-on-primary font-bold" type="button">1</button>
+<button class="w-7 h-7 rounded hover:bg-surface-container text-on-surface" type="button">2</button>
+<button class="w-7 h-7 rounded hover:bg-surface-container text-on-surface" type="button">3</button>
+<span class="px-1">...</span>
+<button class="w-7 h-7 rounded hover:bg-surface-container text-on-surface" type="button">83</button>
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface" type="button">Siguiente</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[26px]">policy</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Régimen DIAN / RIPS XML</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Norma técnica Res. 2275 al día con validación sincrónica activa.</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary flex-shrink-0">
+<span class="material-symbols-outlined text-[26px]">key</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Token Certicamara</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Firma digital criptográfica SHA-256 habilitada hasta Dic 2025.</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[26px]">local_pharmacy</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Red de Farmacias</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Conexión API activa con Cruz Verde, Droguerías Cafam y Audifarma.</span>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full xl:w-[420px] bg-surface-container-lowest rounded-xl shadow-md p-space-md flex flex-col gap-space-md border-primary transition-all" id="rxDrawer">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">prescriptions</span>
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Emisor Rápido de Receta (RXP)</h2>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Prescripción Electrónica Trazable</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-secondary/10 text-secondary font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> En línea
+        </span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Paciente Activo</span>
+<span class="font-label-sm text-label-sm text-primary cursor-pointer hover:underline" id="changePatientBtn">Cambiar</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-primary-container text-on-primary font-bold text-xs flex items-center justify-center">
+            MV
+          </div>
+<div class="flex flex-col flex-1 min-w-0">
+<span class="font-label-md text-label-md font-bold text-on-surface truncate" id="rxPatientName">Mateo Valencia R.</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant" id="rxPatientDoc">CC 1.020.449.120 · Sanitas EPS (Contributivo)</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Búsqueda Vademécum (Comercial / Genérico)</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full h-10 pl-10 pr-space-md rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container transition-all" id="vademecumSearch" placeholder="Ej: Atorvastatina, Losartán, Betaloc..." type="text" value="Carvedilol">
+</div>
+<div class="flex flex-col gap-1 mt-1 bg-surface rounded-lg p-1.5 text-on-surface">
+<div class="flex items-center justify-between p-1.5 rounded hover:bg-surface-container-low cursor-pointer transition-colors" onclick="selectMed('Carvedilol 6.25 mg - Laboratorio Genfar', '1 tableta vía oral cada 12 horas con las comidas (30 días)', 'C07AG02')">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold">Carvedilol 6.25 mg</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tableta recubierta · ATC: C07AG02</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-semibold bg-secondary/10 px-1.5 py-0.5 rounded">POS / PBS</span>
+</div>
+<div class="flex items-center justify-between p-1.5 rounded hover:bg-surface-container-low cursor-pointer transition-colors" onclick="selectMed('Dilatrend (Carvedilol) 25 mg - Roche', '1/2 tableta oral al día matutina', 'C07AG02')">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold">Dilatrend 25 mg (Comercial)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Laboratorio Roche · Comprimidos</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-semibold bg-primary/10 px-1.5 py-0.5 rounded">Comercial</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Posología &amp; Duración Sugerida</label>
+<textarea class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container transition-all resize-none" id="dosageField" rows="2">1 tableta vía oral cada 12 horas con las comidas por 30 días consecutivos.</textarea>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Código Dispensación MIPRES: No requerido</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Cantidad: 60 tabs</span>
+</div>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container flex items-center gap-space-md">
+<div class="bg-surface-container-lowest p-1.5 rounded-lg shadow-sm flex flex-col items-center flex-shrink-0">
+<svg class="w-20 h-20 text-on-surface" fill="currentColor" viewBox="0 0 100 100">
+<path d="M0,0 h30 v30 h-30 z M6,6 h18 v18 h-18 z M10,10 h10 v10 h-10 z"></path>
+<path d="M70,0 h30 v30 h-30 z M76,6 h18 v18 h-18 z M80,10 h10 v10 h-10 z"></path>
+<path d="M0,70 h30 v30 h-30 z M6,76 h18 v18 h-18 z M10,80 h10 v10 h-10 z"></path>
+<rect height="8" width="8" x="36" y="10"></rect>
+<rect height="12" width="8" x="52" y="6"></rect>
+<rect height="6" width="20" x="40" y="24"></rect>
+<rect height="8" width="16" x="10" y="40"></rect>
+<rect height="12" width="12" x="34" y="38"></rect>
+<rect height="6" width="14" x="54" y="44"></rect>
+<rect height="8" width="18" x="74" y="38"></rect>
+<rect height="16" width="8" x="38" y="58"></rect>
+<rect height="10" width="18" x="52" y="60"></rect>
+<rect height="20" width="14" x="76" y="56"></rect>
+<rect height="10" width="22" x="38" y="82"></rect>
+<rect height="10" width="12" x="68" y="84"></rect>
+</svg>
+<span class="font-label-sm text-[9px] text-on-surface-variant font-mono mt-1">UUID: 8F41-RX</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Validación Farmacéutica QR</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Dispensable de inmediato en cualquier droguería adherida mediante escaneo directo.</span>
+<div class="flex items-center gap-1 mt-1 text-secondary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">lock_clock</span> Cifra anti-falsificación activa
+          </div>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">fingerprint</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Firma Médica Digital Token</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Dra. Anya Sharma · Reg. Méd. 10492-RM</span>
+</div>
+</div>
+<span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse" title="Token activo"></span>
+</div>
+<div class="flex items-center gap-space-sm pt-space-xs">
+<button class="flex-1 h-10 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-medium transition-colors" type="button">
+          Vista Previa PDF
+        </button>
+<button class="flex-1 h-10 rounded-lg bg-secondary hover:bg-on-secondary-container text-on-secondary font-label-md text-label-md font-bold transition-all shadow-sm flex items-center justify-center gap-1" id="emitRxBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">send</span> Firmar y Emitir
+        </button>
+</div>
+</div>
+</div>
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none" id="rxNotification">
+<div class="bg-inverse-surface text-inverse-on-surface px-space-md py-space-sm rounded-xl shadow-xl flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary-fixed text-[22px]">check_circle</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-inverse-on-surface">Receta emitida y radicada con éxito</span>
+<span class="font-body-sm text-body-sm text-inverse-on-surface/80">Código QR transmitido a Sanitas y enviado por SMS al paciente.</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function quickFillPatient(name, doc, coverage, defaultMed) {
+    const patientNameEl = document.getElementById('rxPatientName');
+    const patientDocEl = document.getElementById('rxPatientDoc');
+    const vademecumEl = document.getElementById('vademecumSearch');
+    const dosageEl = document.getElementById('dosageField');
+    const rxDrawer = document.getElementById('rxDrawer');
+
+    if (patientNameEl) patientNameEl.textContent = name;
+    if (patientDocEl) patientDocEl.textContent = 'CC ' + doc + ' · ' + coverage;
+    if (vademecumEl) vademecumEl.value = defaultMed.split(' ')[0] || '';
+    if (dosageEl) dosageEl.value = defaultMed + ' por 30 días según prescripción.';
+
+    if (rxDrawer) {
+      rxDrawer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      rxDrawer.classList.add('ring-2', 'ring-primary');
+      setTimeout(() => {
+        rxDrawer.classList.remove('ring-2', 'ring-primary');
+      }, 1200);
+    }
+  }
+
+  function selectMed(name, dosage, code) {
+    const vademecumEl = document.getElementById('vademecumSearch');
+    const dosageEl = document.getElementById('dosageField');
+    if (vademecumEl) vademecumEl.value = name;
+    if (dosageEl) dosageEl.value = dosage;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const emitRxBtn = document.getElementById('emitRxBtn');
+    const notification = document.getElementById('rxNotification');
+    const openRxDrawerBtn = document.getElementById('openRxDrawerBtn');
+    const rxDrawer = document.getElementById('rxDrawer');
+    const tabs = document.querySelectorAll('.tab-btn');
+
+    if (emitRxBtn && notification) {
+      emitRxBtn.addEventListener('click', () => {
+        notification.classList.remove('translate-y-24', 'opacity-0');
+        notification.classList.add('translate-y-0', 'opacity-100');
+        
+        emitRxBtn.disabled = true;
+        emitRxBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span> Procesando...';
+
+        setTimeout(() => {
+          emitRxBtn.disabled = false;
+          emitRxBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">send</span> Firmar y Emitir';
+          
+          setTimeout(() => {
+            notification.classList.remove('translate-y-0', 'opacity-100');
+            notification.classList.add('translate-y-24', 'opacity-0');
+          }, 3500);
+        }, 1000);
+      });
+    }
+
+    if (openRxDrawerBtn && rxDrawer) {
+      openRxDrawerBtn.addEventListener('click', () => {
+        rxDrawer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        rxDrawer.classList.add('ring-2', 'ring-primary');
+        setTimeout(() => rxDrawer.classList.remove('ring-2', 'ring-primary'), 1000);
+      });
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => {
+          t.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm', 'font-semibold');
+          t.classList.add('text-on-surface-variant', 'font-medium');
+        });
+        tab.classList.add('bg-primary', 'text-on-primary', 'shadow-sm', 'font-semibold');
+        tab.classList.remove('text-on-surface-variant', 'font-medium');
+      });
+    });
+
+    const searchInput = document.getElementById('billingSearch');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        const rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+          const text = row.textContent.toLowerCase();
+          row.style.display = text.includes(query) ? '' : 'none';
+        });
+      });
+    }
+  });
+</script></main></div>
+
+</body></html>

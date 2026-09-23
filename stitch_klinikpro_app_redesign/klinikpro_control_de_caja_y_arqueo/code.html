@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-background":"#0b1c30","surface-container-low":"#eff4ff","secondary":"#006c49","surface-dim":"#cbdbf5","on-secondary-fixed":"#002113","tertiary-container":"#005b8b","on-secondary":"#ffffff","surface-container":"#e5eeff","on-secondary-container":"#00714d","primary-fixed":"#cde5ff","secondary-fixed-dim":"#4edea3","on-primary":"#ffffff","surface":"#f8f9ff","primary-container":"#0f5b8b","error":"#ba1a1a","error-container":"#ffdad6","primary-fixed-dim":"#95ccff","tertiary-fixed-dim":"#93ccff","on-surface":"#0b1c30","surface-variant":"#d3e4fe","surface-container-high":"#dce9ff","on-error":"#ffffff","secondary-fixed":"#6ffbbe","inverse-on-surface":"#eaf1ff","on-tertiary-container":"#9fd1ff","inverse-surface":"#213145","outline-variant":"#c1c7d0","surface-bright":"#f8f9ff","primary":"#00436a","on-secondary-fixed-variant":"#005236","background":"#f8f9ff","on-tertiary":"#ffffff","inverse-primary":"#95ccff","tertiary-fixed":"#cce5ff","outline":"#717880","on-surface-variant":"#41474f","on-tertiary-fixed-variant":"#004b73","surface-container-highest":"#d3e4fe","on-primary-fixed-variant":"#004a75","on-error-container":"#93000a","on-primary-container":"#a2d1ff","on-primary-fixed":"#001d32","surface-container-lowest":"#ffffff","surface-tint":"#1d6393","on-tertiary-fixed":"#001d31","tertiary":"#004368","secondary-container":"#6cf8bb"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"space-xl":"2.5rem","space-xs":"0.25rem",gutter:"1.5rem",margin:"2rem","space-sm":"0.5rem","space-md":"1rem","space-lg":"1.5rem"},fontFamily:{"headline-xl":["Plus Jakarta Sans"],"body-md":["Inter"],"headline-lg-mobile":["Plus Jakarta Sans"],"label-sm":["Inter"],"headline-md":["Plus Jakarta Sans"],"label-lg":["Inter"],"body-lg":["Inter"],"headline-sm":["Plus Jakarta Sans"],"label-md":["Inter"],"headline-lg":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"body-sm":["Inter"]},fontSize:{"headline-xl":["36px",{lineHeight:"44px",letterSpacing:"-0.02em",fontWeight:"700"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"headline-lg-mobile":["22px",{lineHeight:"30px",letterSpacing:"0",fontWeight:"600"}],"label-sm":["10px",{lineHeight:"14px",letterSpacing:"0.04em",fontWeight:"600"}],"headline-md":["20px",{lineHeight:"28px",letterSpacing:"-0.005em",fontWeight:"600"}],"label-lg":["14px",{lineHeight:"20px",letterSpacing:"0.01em",fontWeight:"600"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"headline-sm":["16px",{lineHeight:"24px",fontWeight:"600"}],"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"500"}],"headline-lg":["28px",{lineHeight:"36px",letterSpacing:"-0.01em",fontWeight:"600"}],"headline-xl-mobile":["28px",{lineHeight:"36px",letterSpacing:"-0.01em",fontWeight:"700"}],"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between py-space-md overflow-y-auto"><div class="flex flex-col"><div class="px-space-lg py-space-sm flex items-center gap-space-sm mb-space-md"><img alt="KlinikPro Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XE05T0REYPACo6vO4vbbjvApRyuI0Fh434DhhSR2iwBPCvWPb6DVeM-Hip016ZrW72dxDWnrcZOKHJC7GJL8BgqjpjJUlyofKBWQX_3gQ4YgXHYHUlcV-Nq3dhMxrK7Xnl8sar7loOh-Fv7Pxy8denLR9OLUF-RAWl7VVAhtiuCDbEUSwAGV3xXpQ6L2XS9nf4O9I4ZzrA6ei8UAD1h2e1mFjlkoqs0Wg0rLrbscXm"/></div><div class="px-space-md mb-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold tracking-wider">Operaciones Clínicas</span></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary text-on-primary shadow-sm font-medium"><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="inicio" href="#">Inicio</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="pacientes" href="#">Pacientes</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="agenda" href="#">Agenda</a></nav><div class="px-space-md mt-space-md mb-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold tracking-wider">Gestión y Finanzas</span></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary text-on-primary shadow-sm font-medium"><a aria-current="page" class="flex items-center px-space-md py-space-sm rounded-lg transition-colors bg-primary text-on-primary shadow-sm font-medium" data-path="caja" href="#">Caja</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="finanzas" href="#">Finanzas</a></nav><div class="px-space-md mt-space-md mb-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold tracking-wider">Sistema y Soporte</span></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary text-on-primary shadow-sm font-medium"><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="configuracion" href="#">Configuración</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="ayuda" href="#">Ayuda</a></nav></div><div class="px-space-md pt-space-sm mt-space-md"><div class="bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-2 h-2 rounded-full bg-secondary"></div><div class="flex flex-col"><span class="font-label-sm text-label-sm text-on-surface font-semibold">Servidor Clínico</span><span class="font-label-sm text-label-sm text-on-surface-variant">En línea · v4.12.0</span></div></div><span class="material-symbols-outlined text-on-surface-variant text-[18px]">verified</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-lg flex-1 max-w-xl"><div class="relative w-full max-w-md"><span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span><input class="w-full h-10 pl-11 pr-space-md rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant text-body-sm font-body-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-[0_1px_8px_rgba(0,0,0,0.02)] transition-all" placeholder="Buscar por DNI, Nombre o N° de Historia Clínica..." type="text"/></div><div class="hidden xl:flex items-center gap-space-xs bg-surface-container-low px-space-md py-space-xs rounded-lg cursor-pointer hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-primary text-[18px]">apartment</span><div class="flex flex-col text-left"><span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Sede</span><span class="font-label-md text-label-md text-on-surface font-semibold truncate max-w-[190px]">Sede Central - Torre Médica Norte</span></div><span class="material-symbols-outlined text-on-surface-variant text-[18px]">expand_more</span></div></div><div class="flex items-center gap-space-md"><button class="flex items-center gap-space-xs bg-primary hover:bg-primary-container text-on-primary hover:text-on-primary-container px-space-md h-10 rounded-lg shadow-sm transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">add</span><span class="font-label-md text-label-md font-semibold">Nueva Consulta</span></button><div class="relative flex items-center justify-center"><button class="w-10 h-10 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full ring-2 ring-surface"></span></button></div><div class="flex items-center gap-space-sm pl-space-xs"><img alt="Dra. Anya Sharma Avatar" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpIQ4hAHznkSYu5Qd-RzcCxZLVtRmv_7t3bVTwntf3Bu-GZyr10qrUhp3rT3HGdXpxls7k2M3rb8nyY26deinblBbF4jA_pGznwlNUF34HeyEljZc9F0TUAbn3ZI1i_FtwW3Y6PQsyJ56x1p87DzaMteXorOesReMHi2oJlVHL5u3cRF_3Y0LKnNc7hZ05sE0n_VHewueKRky8Fw2oA53IkwatvIIlN5ixDY_KHat8u6FmBwWdiSFD"/><div class="hidden md:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-bold leading-tight">Dra. Anya Sharma</span><span class="font-label-sm text-label-sm text-secondary font-medium leading-none">Cardiología</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen px-space-lg py-space-lg"><div class="flex flex-col w-full gap-space-lg">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-[0_4px_20px_-4px_rgba(15,91,139,0.05)]">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-headline-lg text-headline-lg text-primary">Control de Caja y Operaciones Diarias</span>
+<div class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-secondary-fixed/30 text-on-secondary-fixed-variant font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span>CAJA ABIERTA</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md text-on-surface-variant font-body-sm text-body-sm flex-wrap">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">badge</span>
+          Responsable: <strong class="text-on-surface font-label-md">Lic. Marco Tulio Morales</strong>
+</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">payments</span>
+          Apertura: <strong class="text-on-surface font-label-md">$1,500.00 MXN (08:30 AM)</strong>
+</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary-container">domain</span>
+          Turno Matutino · Terminal TPV-02
+        </span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm flex-wrap self-start lg:self-auto">
+<div class="flex items-center bg-surface-container-low rounded-lg px-space-sm py-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px] mr-1">calendar_month</span>
+<input class="bg-transparent text-on-surface font-label-md text-label-md focus:outline-none cursor-pointer" id="cajaFechaFiltro" type="date" value="2026-09-18"/>
+<button class="ml-2 px-space-sm py-0.5 rounded bg-surface-container-lowest text-primary hover:bg-primary hover:text-on-primary font-label-sm text-label-sm shadow-sm transition-colors" onclick="irAHoy()" type="button">
+          Hoy
+        </button>
+</div>
+<button class="flex items-center gap-1 bg-surface-container-lowest hover:bg-surface-container text-primary font-label-md text-label-md px-space-md h-10 rounded-lg shadow-sm transition-colors" onclick="abrirModalApertura()" type="button">
+<span class="material-symbols-outlined text-[18px]">lock_open</span>
+<span>Revisar Apertura</span>
+</button>
+<button class="flex items-center gap-1 bg-error hover:bg-on-error-container text-on-error font-label-md text-label-md px-space-md h-10 rounded-lg shadow-sm transition-colors" onclick="toggleCierreModal()" type="button">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+<span>Cierre de Turno</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-[0_2px_10px_-2px_rgba(15,91,139,0.04)] flex flex-col justify-between relative overflow-hidden group">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Total Ingresos Hoy</span>
+<div class="w-8 h-8 rounded-lg bg-secondary-fixed/40 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">trending_up</span>
+</div>
+</div>
+<div class="mt-space-sm">
+<div class="font-headline-lg text-headline-lg text-on-surface tracking-tight" id="metricTotalIngresos">$4,850.00</div>
+<div class="flex items-center gap-1 text-secondary font-label-sm text-label-sm mt-0.5">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+<span>12 transacciones validadas</span>
+</div>
+</div>
+<div class="h-1 w-full bg-secondary/30 rounded-full mt-space-sm overflow-hidden">
+<div class="h-full bg-secondary w-4/5"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-[0_2px_10px_-2px_rgba(15,91,139,0.04)] flex flex-col justify-between relative overflow-hidden group">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Total Egresos / Gastos</span>
+<div class="w-8 h-8 rounded-lg bg-error-container text-error flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">receipt_long</span>
+</div>
+</div>
+<div class="mt-space-sm">
+<div class="font-headline-lg text-headline-lg text-error tracking-tight" id="metricTotalGastos">$620.00</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm mt-0.5">
+<span>3 comprobantes registrados</span>
+</div>
+</div>
+<div class="h-1 w-full bg-error-container rounded-full mt-space-sm overflow-hidden">
+<div class="h-full bg-error w-1/4"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-[0_2px_10px_-2px_rgba(15,91,139,0.04)] flex flex-col justify-between relative overflow-hidden group">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Efectivo Esperado</span>
+<div class="w-8 h-8 rounded-lg bg-primary-fixed text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
+</div>
+</div>
+<div class="mt-space-sm">
+<div class="font-headline-lg text-headline-lg text-primary tracking-tight" id="metricEfectivoEsperado">$3,230.00</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm mt-0.5">
+<span>Apertura + Cobros Efectivo - Gastos</span>
+</div>
+</div>
+<div class="h-1 w-full bg-surface-variant rounded-full mt-space-sm overflow-hidden">
+<div class="h-full bg-primary w-2/3"></div>
+</div>
+</div>
+<div class="bg-primary text-on-primary p-space-md rounded-xl shadow-[0_4px_16px_rgba(0,67,106,0.18)] flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-primary/80 font-semibold">Sesión de Caja</span>
+<span class="material-symbols-outlined text-[20px] text-secondary-fixed">sensors</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-headline-md text-headline-md font-bold tracking-tight">Folio Turno #0926</div>
+<div class="text-on-primary/75 font-body-sm text-body-sm mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+<span>4h 32m de operación continua</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-space-sm pt-2 bg-on-primary/10 px-space-sm py-1 rounded">
+<span class="font-label-sm text-label-sm">Balance Digital (TPV)</span>
+<span class="font-label-md text-label-md font-bold text-secondary-fixed">$2,240.00</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between gap-space-md flex-wrap bg-surface-container-low p-1.5 rounded-xl">
+<div class="flex items-center gap-1 overflow-x-auto">
+<button class="tab-pill-btn flex items-center gap-2 px-space-lg py-2 rounded-lg font-label-lg text-label-lg bg-primary text-on-primary shadow-sm transition-all" id="tabBtnCobros" onclick="switchCajaTab('cobros')" type="button">
+<span class="material-symbols-outlined text-[18px]">add_card</span>
+<span>Ingresos y Cobros</span>
+<span class="ml-1 text-[11px] px-1.5 py-0.2 rounded-full bg-surface-container-lowest/20 font-bold">12</span>
+</button>
+<button class="tab-pill-btn flex items-center gap-2 px-space-lg py-2 rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container transition-all" id="tabBtnGastos" onclick="switchCajaTab('gastos')" type="button">
+<span class="material-symbols-outlined text-[18px]">shopping_cart_checkout</span>
+<span>Gastos y Salidas</span>
+<span class="ml-1 text-[11px] px-1.5 py-0.2 rounded-full bg-error-container text-error font-bold">3</span>
+</button>
+<button class="tab-pill-btn flex items-center gap-2 px-space-lg py-2 rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container transition-all" id="tabBtnArqueo" onclick="switchCajaTab('arqueo')" type="button">
+<span class="material-symbols-outlined text-[18px]">calculate</span>
+<span>Arqueo Físico de Efectivo</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</button>
+</div>
+<div class="flex items-center gap-space-sm px-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sincronización Fiscal CFDI 4.0:</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm font-semibold text-secondary">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Activa
+      </span>
+</div>
+</div>
+<div class="flex flex-col gap-space-lg" id="tabContentCobros">
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg">
+<div class="xl:col-span-8 bg-surface-container-lowest p-space-lg rounded-xl shadow-[0_4px_20px_-4px_rgba(15,91,139,0.05)]">
+<div class="flex items-center justify-between pb-space-md mb-space-md border-b border-surface-container">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">point_of_sale</span>
+</div>
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Registro Rápido de Cobro Clínico</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Capture el pago de la consulta o tratamiento emitido</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Folio Sugerido:</span>
+<span class="font-label-md text-label-md px-space-sm py-1 bg-surface-container rounded font-bold text-primary" id="folioSugerido">2026-SEP-013</span>
+</div>
+</div>
+<form class="grid grid-cols-1 md:grid-cols-12 gap-space-md" id="formRegistroCobro" onsubmit="registrarCobro(event)">
+<div class="md:col-span-8 flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold flex items-center justify-between">
+<span>Paciente (Búsqueda o N° Historia / ID 4 dígitos)</span>
+<a class="text-primary text-label-sm hover:underline font-normal" href="#">+ Nuevo Paciente</a>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">person_search</span>
+<input class="w-full h-10 pl-10 pr-4 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary transition-all" id="cobroPaciente" placeholder="Escriba código (ej. 4821) o nombre del paciente..." required="" type="text" value="Rodrigo Navarro Morales (ID: 4091)"/>
+</div>
+</div>
+<div class="md:col-span-4 flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Especialista Asignado</label>
+<select class="w-full h-10 px-3 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary" id="cobroEspecialista">
+<option>Dra. Anya Sharma (Cardiología)</option>
+<option>Dr. Roberto Méndez (Fisioterapia)</option>
+<option>Dra. Carmen Valenzuela (Medicina Gen.)</option>
+<option>Lic. Sofia Terán (Nutrición)</option>
+</select>
+</div>
+<div class="md:col-span-7 flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Servicio / Concepto Facturable</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">medical_services</span>
+<input class="w-full h-10 pl-10 pr-4 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary" id="cobroServicio" placeholder="Ej. Terapia de Rehabilitación Cardiovascular" required="" type="text" value="Ecocardiograma Transtorácico Doppler"/>
+</div>
+</div>
+<div class="md:col-span-2 flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Sesiones</label>
+<input class="w-full h-10 px-3 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm text-center focus:outline-none focus:ring-2 focus:ring-primary" id="cobroSesiones" max="20" min="1" type="number" value="1"/>
+</div>
+<div class="md:col-span-3 flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Monto Bruto ($ MXN)</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant font-bold text-[14px]">$</span>
+<input class="w-full h-10 pl-7 pr-3 rounded-lg bg-surface-container-low text-on-surface font-headline-sm text-headline-sm focus:outline-none focus:ring-2 focus:ring-primary text-right" id="cobroMonto" oninput="calcularComision()" placeholder="0.00" required="" step="0.01" type="number" value="850.00"/>
+</div>
+</div>
+<div class="md:col-span-6 flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Forma de Pago Principal</label>
+<select class="w-full h-10 px-3 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md focus:outline-none focus:ring-2 focus:ring-primary" id="cobroFormaPago" onchange="cambioFormaPago(this.value)">
+<option value="efectivo">Efectivo</option>
+<option value="tarjeta_debito">Tarjeta de Débito (1.8% comisión)</option>
+<option value="tarjeta_credito">Tarjeta de Crédito (2.5% comisión)</option>
+<option value="transferencia">Transferencia SPEI / Interbancaria</option>
+<option value="mixto">Pago Mixto (Efectivo + Terminal)</option>
+</select>
+</div>
+<div class="md:col-span-3 flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Comisión TPV</label>
+<input class="w-full h-10 px-3 rounded-lg bg-surface-container text-on-surface-variant font-label-md text-label-md text-right focus:outline-none cursor-not-allowed" id="cobroComisionDisplay" readonly="" type="text" value="$0.00 MXN"/>
+</div>
+<div class="md:col-span-3 flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold text-primary">Total Neto a Cobrar</label>
+<input class="w-full h-10 px-3 rounded-lg bg-primary-fixed/30 text-primary font-headline-sm text-headline-sm font-bold text-right focus:outline-none cursor-not-allowed" id="cobroTotalNeto" readonly="" type="text" value="$850.00 MXN"/>
+</div>
+<div class="hidden md:col-span-12 p-space-sm bg-surface-container-low rounded-lg grid grid-cols-1 md:grid-cols-2 gap-space-sm" id="panelPagoMixto">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Parte en Efectivo:</span>
+<input class="w-full h-9 px-2 rounded bg-surface-container-lowest text-body-sm font-body-sm focus:outline-none" placeholder="$0.00" step="0.01" type="number"/>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Parte con Tarjeta / Transferencia:</span>
+<input class="w-full h-9 px-2 rounded bg-surface-container-lowest text-body-sm font-body-sm focus:outline-none" placeholder="$0.00" step="0.01" type="number"/>
+</div>
+</div>
+<div class="md:col-span-12 flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-2">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-primary cursor-pointer" id="emitirCFDI" type="checkbox"/>
+<label class="font-label-sm text-label-sm text-on-surface-variant cursor-pointer" for="emitirCFDI">Emitir factura electrónica automática (CFDI 4.0 al correo del paciente)</label>
+</div>
+<button class="flex items-center gap-2 bg-primary hover:bg-primary-container text-on-primary px-space-xl h-10 rounded-lg shadow-md transition-all font-label-lg text-label-lg" type="submit">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span>Completar y Generar Recibo</span>
+</button>
+</div>
+</form>
+</div>
+<div class="xl:col-span-4 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-[0_4px_20px_-4px_rgba(15,91,139,0.05)]">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface">Arqueo Exprés en Caja</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container font-label-sm text-label-sm font-semibold text-primary">Tiempo Real</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Verifique el billeteo físico para conciliar con el saldo teórico de <strong>$3,230.00</strong></p>
+<div class="space-y-1.5 max-h-64 overflow-y-auto pr-1">
+<div class="flex items-center justify-between p-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<span class="font-label-md text-label-md font-semibold text-on-surface w-20">Billete $1000</span>
+<input class="arqueo-input w-16 h-8 text-center rounded bg-surface-container-lowest font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary" data-val="1000" min="0" oninput="actualizarArqueoRapido()" type="number" value="1"/>
+<span class="font-label-md text-label-md text-on-surface font-medium subtotal-arq w-20 text-right">$1,000.00</span>
+</div>
+<div class="flex items-center justify-between p-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<span class="font-label-md text-label-md font-semibold text-on-surface w-20">Billete $500</span>
+<input class="arqueo-input w-16 h-8 text-center rounded bg-surface-container-lowest font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary" data-val="500" min="0" oninput="actualizarArqueoRapido()" type="number" value="3"/>
+<span class="font-label-md text-label-md text-on-surface font-medium subtotal-arq w-20 text-right">$1,500.00</span>
+</div>
+<div class="flex items-center justify-between p-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<span class="font-label-md text-label-md font-semibold text-on-surface w-20">Billete $200</span>
+<input class="arqueo-input w-16 h-8 text-center rounded bg-surface-container-lowest font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary" data-val="200" min="0" oninput="actualizarArqueoRapido()" type="number" value="2"/>
+<span class="font-label-md text-label-md text-on-surface font-medium subtotal-arq w-20 text-right">$400.00</span>
+</div>
+<div class="flex items-center justify-between p-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<span class="font-label-md text-label-md font-semibold text-on-surface w-20">Billete $100</span>
+<input class="arqueo-input w-16 h-8 text-center rounded bg-surface-container-lowest font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary" data-val="100" min="0" oninput="actualizarArqueoRapido()" type="number" value="2"/>
+<span class="font-label-md text-label-md text-on-surface font-medium subtotal-arq w-20 text-right">$200.00</span>
+</div>
+<div class="flex items-center justify-between p-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<span class="font-label-md text-label-md font-semibold text-on-surface w-20">Billete $50</span>
+<input class="arqueo-input w-16 h-8 text-center rounded bg-surface-container-lowest font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary" data-val="50" min="0" oninput="actualizarArqueoRapido()" type="number" value="2"/>
+<span class="font-label-md text-label-md text-on-surface font-medium subtotal-arq w-20 text-right">$100.00</span>
+</div>
+<div class="flex items-center justify-between p-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<span class="font-label-md text-label-md font-semibold text-on-surface w-20">Monedas</span>
+<input class="arqueo-input w-16 h-8 text-center rounded bg-surface-container-lowest font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary" data-val="1" min="0" oninput="actualizarArqueoRapido()" type="number" value="30"/>
+<span class="font-label-md text-label-md text-on-surface font-medium subtotal-arq w-20 text-right">$30.00</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-surface-container flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface-variant">Conteo Físico Total:</span>
+<span class="font-headline-sm text-headline-sm text-on-surface" id="arqueoFisicoTotal">$3,230.00</span>
+</div>
+<div class="flex justify-between items-center p-2 rounded-lg bg-secondary-fixed/20 text-secondary">
+<span class="font-label-sm text-label-sm font-semibold uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">verified</span> Cuadre de Caja:
+              </span>
+<span class="font-label-lg text-label-lg font-bold" id="arqueoDiferencia">Exacto ($0.00)</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-[0_4px_20px_-4px_rgba(15,91,139,0.05)] flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-secondary-fixed/40 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">point_of_sale</span>
+</div>
+<div>
+<span class="font-label-md text-label-md font-bold text-on-surface block">Cajón Portamonedas</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Conexión USB ESC/POS</span>
+</div>
+</div>
+<button class="px-space-md py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-md text-label-md transition-colors flex items-center gap-1" onclick="abrirCajonFisico()" type="button">
+<span class="material-symbols-outlined text-[16px]">eject</span>
+<span>Expulsar</span>
+</button>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_-4px_rgba(15,91,139,0.05)] overflow-hidden">
+<div class="p-space-lg flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm border-b border-surface-container">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Historial de Cobros de la Jornada</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Movimientos registrados en tiempo real para la fecha seleccionada</p>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[16px]">search</span>
+<input class="h-9 pl-8 pr-3 rounded-lg bg-surface-container-low text-body-sm font-body-sm focus:outline-none focus:ring-1 focus:ring-primary w-48 sm:w-64" placeholder="Filtrar por paciente o folio..." type="text"/>
+</div>
+<button class="h-9 px-space-md rounded-lg bg-surface-container-low hover:bg-surface-container text-primary font-label-sm text-label-sm flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span>Exportar XLS</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-space-md">Hora / Folio</th>
+<th class="py-3 px-space-md">Paciente</th>
+<th class="py-3 px-space-md">Especialista</th>
+<th class="py-3 px-space-md">Servicio / Tratamiento</th>
+<th class="py-3 px-space-md">Método Pago</th>
+<th class="py-3 px-space-md text-right">Monto Bruto</th>
+<th class="py-3 px-space-md text-right">Comisión</th>
+<th class="py-3 px-space-md text-center">Acciones Rápidas</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container font-body-sm text-body-sm text-on-surface" id="tablaCobrosBody">
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3 px-space-md whitespace-nowrap">
+<div class="font-label-md text-label-md font-bold text-primary">2026-SEP-012</div>
+<div class="text-on-surface-variant text-label-sm">11:45 AM</div>
+</td>
+<td class="py-3 px-space-md">
+<div class="font-label-md text-label-md font-semibold text-on-surface">Valeria Peña Salgado</div>
+<div class="text-on-surface-variant text-label-sm">HC: #2940 · 1 sesión</div>
+</td>
+<td class="py-3 px-space-md text-on-surface-variant font-medium">Dra. Anya Sharma</td>
+<td class="py-3 px-space-md">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-sm">Consulta Cardiología</span>
+</td>
+<td class="py-3 px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm px-2 py-0.5 rounded bg-secondary-fixed/40 text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined text-[14px]">payments</span> Efectivo
+                </span>
+</td>
+<td class="py-3 px-space-md text-right font-headline-sm text-headline-sm font-bold text-on-surface">$1,200.00</td>
+<td class="py-3 px-space-md text-right text-on-surface-variant text-label-sm">$0.00</td>
+<td class="py-3 px-space-md whitespace-nowrap text-center">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-primary transition-colors" title="Imprimir Recibo Clínico">
+<span class="material-symbols-outlined text-[18px]">print</span>
+</button>
+<button class="p-1.5 rounded hover:bg-secondary-fixed/30 text-secondary transition-colors" title="Enviar por WhatsApp">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant transition-colors" title="Editar Cobro">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-error-container text-error transition-colors" title="Anular Transacción">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3 px-space-md whitespace-nowrap">
+<div class="font-label-md text-label-md font-bold text-primary">2026-SEP-011</div>
+<div class="text-on-surface-variant text-label-sm">11:10 AM</div>
+</td>
+<td class="py-3 px-space-md">
+<div class="font-label-md text-label-md font-semibold text-on-surface">Guillermo Arriaga G.</div>
+<div class="text-on-surface-variant text-label-sm">HC: #1882 · Paquete 5 ses.</div>
+</td>
+<td class="py-3 px-space-md text-on-surface-variant font-medium">Dr. Roberto Méndez</td>
+<td class="py-3 px-space-md">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-sm">Paq. Fisioterapia Lumbar</span>
+</td>
+<td class="py-3 px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm px-2 py-0.5 rounded bg-primary-fixed/40 text-primary">
+<span class="material-symbols-outlined text-[14px]">credit_card</span> Tarjeta Débito
+                </span>
+</td>
+<td class="py-3 px-space-md text-right font-headline-sm text-headline-sm font-bold text-on-surface">$2,240.00</td>
+<td class="py-3 px-space-md text-right text-error text-label-sm">-$40.32</td>
+<td class="py-3 px-space-md whitespace-nowrap text-center">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-primary transition-colors" title="Imprimir Recibo Clínico">
+<span class="material-symbols-outlined text-[18px]">print</span>
+</button>
+<button class="p-1.5 rounded hover:bg-secondary-fixed/30 text-secondary transition-colors" title="Enviar por WhatsApp">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant transition-colors" title="Editar Cobro">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-error-container text-error transition-colors" title="Anular Transacción">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3 px-space-md whitespace-nowrap">
+<div class="font-label-md text-label-md font-bold text-primary">2026-SEP-010</div>
+<div class="text-on-surface-variant text-label-sm">10:05 AM</div>
+</td>
+<td class="py-3 px-space-md">
+<div class="font-label-md text-label-md font-semibold text-on-surface">Beatriz Domínguez</div>
+<div class="text-on-surface-variant text-label-sm">HC: #3021 · 1 sesión</div>
+</td>
+<td class="py-3 px-space-md text-on-surface-variant font-medium">Lic. Sofia Terán</td>
+<td class="py-3 px-space-md">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-sm">Bioimpedancia Nutricional</span>
+</td>
+<td class="py-3 px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">account_balance</span> Transferencia
+                </span>
+</td>
+<td class="py-3 px-space-md text-right font-headline-sm text-headline-sm font-bold text-on-surface">$650.00</td>
+<td class="py-3 px-space-md text-right text-on-surface-variant text-label-sm">$0.00</td>
+<td class="py-3 px-space-md whitespace-nowrap text-center">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-primary transition-colors" title="Imprimir Recibo Clínico">
+<span class="material-symbols-outlined text-[18px]">print</span>
+</button>
+<button class="p-1.5 rounded hover:bg-secondary-fixed/30 text-secondary transition-colors" title="Enviar por WhatsApp">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant transition-colors" title="Editar Cobro">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-error-container text-error transition-colors" title="Anular Transacción">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3 px-space-md whitespace-nowrap">
+<div class="font-label-md text-label-md font-bold text-primary">2026-SEP-009</div>
+<div class="text-on-surface-variant text-label-sm">09:15 AM</div>
+</td>
+<td class="py-3 px-space-md">
+<div class="font-label-md text-label-md font-semibold text-on-surface">Ernesto Cisneros R.</div>
+<div class="text-on-surface-variant text-label-sm">HC: #1194 · 1 sesión</div>
+</td>
+<td class="py-3 px-space-md text-on-surface-variant font-medium">Dra. Carmen Valenzuela</td>
+<td class="py-3 px-space-md">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-sm">Certificado Médico + Lab</span>
+</td>
+<td class="py-3 px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm px-2 py-0.5 rounded bg-secondary-fixed/40 text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined text-[14px]">payments</span> Efectivo
+                </span>
+</td>
+<td class="py-3 px-space-md text-right font-headline-sm text-headline-sm font-bold text-on-surface">$760.00</td>
+<td class="py-3 px-space-md text-right text-on-surface-variant text-label-sm">$0.00</td>
+<td class="py-3 px-space-md whitespace-nowrap text-center">
+<div class="inline-flex items-center gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-primary transition-colors" title="Imprimir Recibo Clínico">
+<span class="material-symbols-outlined text-[18px]">print</span>
+</button>
+<button class="p-1.5 rounded hover:bg-secondary-fixed/30 text-secondary transition-colors" title="Enviar por WhatsApp">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant transition-colors" title="Editar Cobro">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 rounded hover:bg-error-container text-error transition-colors" title="Anular Transacción">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-space-md bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-sm font-body-sm text-body-sm text-on-surface-variant">
+<span>Mostrando 4 de 12 transacciones del día</span>
+<div class="flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors disabled:opacity-50" disabled="">Anterior</button>
+<span class="px-2 font-semibold text-primary">1</span>
+<button class="px-2 py-1 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors">2</button>
+<button class="px-2 py-1 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors">3</button>
+<button class="px-2 py-1 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors">Siguiente</button>
+</div>
+</div>
+</div>
+</div>
+<div class="hidden flex flex-col gap-space-lg" id="tabContentGastos">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<div class="lg:col-span-5 bg-surface-container-lowest p-space-lg rounded-xl shadow-[0_4px_20px_-4px_rgba(15,91,139,0.05)]">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Registrar Salida de Caja Menor</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Vales para compras operativas autorizadas, insumos o mensajería</p>
+<form class="flex flex-col gap-space-md" onsubmit="registrarGasto(event)">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Concepto del Gasto</label>
+<input class="w-full h-10 px-3 rounded-lg bg-surface-container-low text-on-surface text-body-sm focus:outline-none focus:ring-2 focus:ring-primary" id="gastoConcepto" placeholder="Ej. Material descartable farmacia urgente" required="" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Monto ($ MXN)</label>
+<input class="w-full h-10 px-3 rounded-lg bg-surface-container-low text-on-surface text-headline-sm font-bold focus:outline-none focus:ring-2 focus:ring-primary text-right" id="gastoMonto" placeholder="0.00" required="" step="0.01" type="number"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Categoría</label>
+<select class="w-full h-10 px-3 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md focus:outline-none focus:ring-2 focus:ring-primary">
+<option>Insumos Médicos</option>
+<option>Limpieza y Desinfección</option>
+<option>Mensajería / Fletes</option>
+<option>Mantenimiento Equipo</option>
+<option>Refrigerios Clínicos</option>
+</select>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Persona que Recibe / Proveedor</label>
+<input class="w-full h-10 px-3 rounded-lg bg-surface-container-low text-on-surface text-body-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Nombre completo de quien recibe el efectivo" type="text"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">N° Folio o Comprobante Fiscal (Factura/Ticket)</label>
+<input class="w-full h-10 px-3 rounded-lg bg-surface-container-low text-on-surface text-body-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Folio del ticket de compra" type="text"/>
+</div>
+<button class="w-full h-10 bg-error hover:bg-on-error-container text-on-error font-label-md text-label-md rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined text-[18px]">remove_circle</span>
+<span>Registrar Egreso de Efectivo</span>
+</button>
+</form>
+</div>
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_-4px_rgba(15,91,139,0.05)] overflow-hidden">
+<div class="p-space-lg border-b border-surface-container flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Gastos Autorizados Hoy</h3>
+<span class="font-label-md text-label-md font-bold text-error">Total: $620.00 MXN</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-space-md">Hora</th>
+<th class="py-3 px-space-md">Concepto / Justificación</th>
+<th class="py-3 px-space-md">Categoría</th>
+<th class="py-3 px-space-md">Entregado a</th>
+<th class="py-3 px-space-md text-right">Monto</th>
+<th class="py-3 px-space-md text-center">Ticket</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container font-body-sm text-body-sm">
+<tr class="hover:bg-surface-container-low/60">
+<td class="py-3 px-space-md font-label-md">10:40 AM</td>
+<td class="py-3 px-space-md font-semibold text-on-surface">Gel conductor ultrasonido (2 galones)</td>
+<td class="py-3 px-space-md"><span class="px-2 py-0.5 rounded bg-surface-container font-label-sm">Insumos Médicos</span></td>
+<td class="py-3 px-space-md text-on-surface-variant">Farmacia San José</td>
+<td class="py-3 px-space-md text-right font-headline-sm text-headline-sm text-error font-bold">$380.00</td>
+<td class="py-3 px-space-md text-center text-primary">
+<span class="material-symbols-outlined text-[18px] cursor-pointer">receipt</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/60">
+<td class="py-3 px-space-md font-label-md">09:50 AM</td>
+<td class="py-3 px-space-md font-semibold text-on-surface">Agua purificada garrafones sala espera</td>
+<td class="py-3 px-space-md"><span class="px-2 py-0.5 rounded bg-surface-container font-label-sm">Refrigerios</span></td>
+<td class="py-3 px-space-md text-on-surface-variant">Repartidor Bonafont</td>
+<td class="py-3 px-space-md text-right font-headline-sm text-headline-sm text-error font-bold">$120.00</td>
+<td class="py-3 px-space-md text-center text-primary">
+<span class="material-symbols-outlined text-[18px] cursor-pointer">receipt</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/60">
+<td class="py-3 px-space-md font-label-md">08:45 AM</td>
+<td class="py-3 px-space-md font-semibold text-on-surface">Envío paquetería muestras patología</td>
+<td class="py-3 px-space-md"><span class="px-2 py-0.5 rounded bg-surface-container font-label-sm">Mensajería</span></td>
+<td class="py-3 px-space-md text-on-surface-variant">Mensajero Express</td>
+<td class="py-3 px-space-md text-right font-headline-sm text-headline-sm text-error font-bold">$120.00</td>
+<td class="py-3 px-space-md text-center text-primary">
+<span class="material-symbols-outlined text-[18px] cursor-pointer">receipt</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="hidden flex flex-col gap-space-lg" id="tabContentArqueo">
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-[0_4px_20px_-4px_rgba(15,91,139,0.05)]">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md pb-space-md mb-space-md border-b border-surface-container">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">Arqueo Completo de Cierre y Conciliación</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Conteo pormenorizado de papel moneda, divisas metálicas y comprobantes electrónicos</p>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="flex items-center gap-1.5 bg-surface-container hover:bg-surface-container-high text-primary font-label-md text-label-md px-space-md h-10 rounded-lg transition-colors" onclick="imprimirActaArqueo()" type="button">
+<span class="material-symbols-outlined text-[18px]">print</span>
+<span>Imprimir Hoja de Arqueo</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<div class="lg:col-span-7 space-y-space-md">
+<div class="bg-surface-container-low p-space-md rounded-xl">
+<span class="font-label-md text-label-md text-primary uppercase font-bold tracking-wider block mb-space-sm">Desglose de Billetes Nacionales</span>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-space-sm">
+<div class="bg-surface-container-lowest p-2 rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">$1,000 MXN</span>
+<div class="flex items-center gap-2 mt-1">
+<input class="w-full h-8 px-2 text-center rounded bg-surface-container-low font-bold" min="0" type="number" value="1"/>
+</div>
+<span class="text-right font-label-sm text-label-sm text-primary font-bold mt-1">$1,000.00</span>
+</div>
+<div class="bg-surface-container-lowest p-2 rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">$500 MXN</span>
+<div class="flex items-center gap-2 mt-1">
+<input class="w-full h-8 px-2 text-center rounded bg-surface-container-low font-bold" min="0" type="number" value="3"/>
+</div>
+<span class="text-right font-label-sm text-label-sm text-primary font-bold mt-1">$1,500.00</span>
+</div>
+<div class="bg-surface-container-lowest p-2 rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">$200 MXN</span>
+<div class="flex items-center gap-2 mt-1">
+<input class="w-full h-8 px-2 text-center rounded bg-surface-container-low font-bold" min="0" type="number" value="2"/>
+</div>
+<span class="text-right font-label-sm text-label-sm text-primary font-bold mt-1">$400.00</span>
+</div>
+<div class="bg-surface-container-lowest p-2 rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">$100 MXN</span>
+<div class="flex items-center gap-2 mt-1">
+<input class="w-full h-8 px-2 text-center rounded bg-surface-container-low font-bold" min="0" type="number" value="2"/>
+</div>
+<span class="text-right font-label-sm text-label-sm text-primary font-bold mt-1">$200.00</span>
+</div>
+<div class="bg-surface-container-lowest p-2 rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">$50 MXN</span>
+<div class="flex items-center gap-2 mt-1">
+<input class="w-full h-8 px-2 text-center rounded bg-surface-container-low font-bold" min="0" type="number" value="2"/>
+</div>
+<span class="text-right font-label-sm text-label-sm text-primary font-bold mt-1">$100.00</span>
+</div>
+<div class="bg-surface-container-lowest p-2 rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">$20 MXN</span>
+<div class="flex items-center gap-2 mt-1">
+<input class="w-full h-8 px-2 text-center rounded bg-surface-container-low font-bold" min="0" type="number" value="0"/>
+</div>
+<span class="text-right font-label-sm text-label-sm text-primary font-bold mt-1">$0.00</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-xl">
+<span class="font-label-md text-label-md text-primary uppercase font-bold tracking-wider block mb-space-sm">Desglose de Monedas</span>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm">
+<div class="bg-surface-container-lowest p-2 rounded-lg text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">$20</span>
+<input class="w-full h-8 text-center rounded bg-surface-container-low font-bold mt-1" min="0" type="number" value="0"/>
+<span class="font-label-sm text-label-sm text-primary block mt-1">$0.00</span>
+</div>
+<div class="bg-surface-container-lowest p-2 rounded-lg text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">$10</span>
+<input class="w-full h-8 text-center rounded bg-surface-container-low font-bold mt-1" min="0" type="number" value="2"/>
+<span class="font-label-sm text-label-sm text-primary block mt-1">$20.00</span>
+</div>
+<div class="bg-surface-container-lowest p-2 rounded-lg text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">$5</span>
+<input class="w-full h-8 text-center rounded bg-surface-container-low font-bold mt-1" min="0" type="number" value="1"/>
+<span class="font-label-sm text-label-sm text-primary block mt-1">$5.00</span>
+</div>
+<div class="bg-surface-container-lowest p-2 rounded-lg text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">$1 / $2</span>
+<input class="w-full h-8 text-center rounded bg-surface-container-low font-bold mt-1" min="0" type="number" value="5"/>
+<span class="font-label-sm text-label-sm text-primary block mt-1">$5.00</span>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 bg-surface-container-low p-space-lg rounded-xl flex flex-col justify-between">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-space-md">Resumen de Cuadre Contable</h4>
+<div class="space-y-space-sm text-body-sm">
+<div class="flex justify-between py-1 border-b border-surface-container">
+<span class="text-on-surface-variant">(+) Saldo Inicial de Caja:</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">$1,500.00</span>
+</div>
+<div class="flex justify-between py-1 border-b border-surface-container">
+<span class="text-on-surface-variant">(+) Cobros en Efectivo:</span>
+<span class="font-label-md text-label-md font-bold text-secondary">+$2,350.00</span>
+</div>
+<div class="flex justify-between py-1 border-b border-surface-container">
+<span class="text-on-surface-variant">(-) Salidas y Gastos en Efectivo:</span>
+<span class="font-label-md text-label-md font-bold text-error">-$620.00</span>
+</div>
+<div class="flex justify-between py-2 border-b-2 border-primary">
+<span class="font-label-lg text-label-lg font-bold text-primary">(=) Total Efectivo Teórico Esperado:</span>
+<span class="font-headline-sm text-headline-sm font-bold text-primary">$3,230.00</span>
+</div>
+<div class="flex justify-between py-1 pt-2">
+<span class="font-label-md text-label-md text-on-surface">Total Efectivo Físico Contado:</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">$3,230.00</span>
+</div>
+</div>
+<div class="mt-space-md p-space-md rounded-xl bg-secondary-fixed/30 text-on-secondary-fixed-variant flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[28px] text-secondary">task_alt</span>
+<div>
+<div class="font-label-lg text-label-lg font-bold">Caja Totalmente Cuadrada</div>
+<div class="font-body-sm text-body-sm">Sin faltante ni sobrante reportado. Listo para validación de supervisión.</div>
+</div>
+</div>
+</div>
+<div class="pt-space-lg flex flex-col gap-2">
+<button class="w-full h-11 bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg rounded-lg shadow-md transition-all flex items-center justify-center gap-2" onclick="toggleCierreModal()" type="button">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+<span>Proceder con Cierre Oficial de Turno</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center bg-inverse-surface/40 backdrop-blur-sm p-4" id="modalCierreCaja">
+<div class="bg-surface-container-lowest rounded-2xl shadow-[0_24px_48px_-12px_rgba(15,23,42,0.25)] max-w-lg w-full p-space-lg">
+<div class="flex items-center justify-between pb-space-sm border-b border-surface-container">
+<div class="flex items-center gap-2 text-primary font-headline-sm text-headline-sm">
+<span class="material-symbols-outlined text-[24px]">lock</span>
+<span>Acta de Cierre de Caja</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface p-1" onclick="toggleCierreModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="py-space-md flex flex-col gap-space-md">
+<div class="p-space-sm bg-surface-container-low rounded-lg text-body-sm text-on-surface">
+<p>Se bloquearán nuevos registros para el turno actual de <strong>Lic. Marco Tulio Morales</strong>. Los folios de venta quedarán asegurados con hash criptográfico fiscal.</p>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Observaciones o Comentarios del Turno</label>
+<textarea class="w-full p-2.5 rounded-lg bg-surface-container-low text-on-surface text-body-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Ningún incidente. Turno concluido sin novedades en terminales..." rows="3"></textarea>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Firma Electrónica / PIN de Cajero Responsable</label>
+<input class="w-full h-10 px-3 rounded-lg bg-surface-container-low text-on-surface text-center tracking-widest font-bold focus:outline-none focus:ring-2 focus:ring-primary" maxlength="6" placeholder="******" type="password"/>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-sm border-t border-surface-container">
+<button class="px-space-md h-10 rounded-lg text-on-surface-variant hover:bg-surface-container font-label-md text-label-md" onclick="toggleCierreModal()" type="button">
+          Cancelar
+        </button>
+<button class="px-space-lg h-10 rounded-lg bg-error hover:bg-on-error-container text-on-error font-label-md text-label-md shadow-sm" onclick="confirmarCierre()" type="button">
+          Confirmar y Cerrar Caja Definitivamente
+        </button>
+</div>
+</div>
+</div>
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none bg-inverse-surface text-inverse-on-surface px-space-lg py-3 rounded-xl shadow-xl flex items-center gap-3" id="toastNotificacion">
+<span class="material-symbols-outlined text-secondary-fixed text-[22px]" id="toastIcon">check_circle</span>
+<span class="font-label-md text-label-md" id="toastMessage">Operación efectuada con éxito</span>
+</div>
+</div>
+<script>
+  function switchCajaTab(tabId) {
+    const tabs = ['cobros', 'gastos', 'arqueo'];
+    tabs.forEach(t => {
+      const content = document.getElementById('tabContent' + t.charAt(0).toUpperCase() + t.slice(1));
+      const btn = document.getElementById('tabBtn' + t.charAt(0).toUpperCase() + t.slice(1));
+      if (t === tabId) {
+        content.classList.remove('hidden');
+        btn.className = 'tab-pill-btn flex items-center gap-2 px-space-lg py-2 rounded-lg font-label-lg text-label-lg bg-primary text-on-primary shadow-sm transition-all';
+      } else {
+        content.classList.add('hidden');
+        btn.className = 'tab-pill-btn flex items-center gap-2 px-space-lg py-2 rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container transition-all';
+      }
+    });
+  }
+
+  function cambioFormaPago(tipo) {
+    const mixtoPanel = document.getElementById('panelPagoMixto');
+    if (tipo === 'mixto') {
+      mixtoPanel.classList.remove('hidden');
+    } else {
+      mixtoPanel.classList.add('hidden');
+    }
+    calcularComision();
+  }
+
+  function calcularComision() {
+    const monto = parseFloat(document.getElementById('cobroMonto').value) || 0;
+    const metodo = document.getElementById('cobroFormaPago').value;
+    let comisionRate = 0;
+
+    if (metodo === 'tarjeta_debito') comisionRate = 0.018;
+    if (metodo === 'tarjeta_credito') comisionRate = 0.025;
+
+    const comisionVal = monto * comisionRate;
+    document.getElementById('cobroComisionDisplay').value = '$' + comisionVal.toFixed(2) + ' MXN';
+    document.getElementById('cobroTotalNeto').value = '$' + monto.toFixed(2) + ' MXN';
+  }
+
+  function registrarCobro(e) {
+    e.preventDefault();
+    const paciente = document.getElementById('cobroPaciente').value;
+    const servicio = document.getElementById('cobroServicio').value;
+    const especialista = document.getElementById('cobroEspecialista').value;
+    const monto = parseFloat(document.getElementById('cobroMonto').value) || 0;
+    const metodoSelect = document.getElementById('cobroFormaPago');
+    const metodoTexto = metodoSelect.options[metodoSelect.selectedIndex].text;
+    const sesiones = document.getElementById('cobroSesiones').value;
+    const folio = document.getElementById('folioSugerido').innerText;
+
+    const tbody = document.getElementById('tablaCobrosBody');
+    const tr = document.createElement('tr');
+    tr.className = 'hover:bg-surface-container-low/60 transition-colors bg-secondary-fixed/10 animate-fade-in';
+    
+    const horaActual = new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
+
+    tr.innerHTML = `
+      <td class="py-3 px-space-md whitespace-nowrap">
+        <div class="font-label-md text-label-md font-bold text-primary">${folio}</div>
+        <div class="text-on-surface-variant text-label-sm">${horaActual}</div>
+      </td>
+      <td class="py-3 px-space-md">
+        <div class="font-label-md text-label-md font-semibold text-on-surface">${paciente}</div>
+        <div class="text-on-surface-variant text-label-sm">${sesiones} sesión(es)</div>
+      </td>
+      <td class="py-3 px-space-md text-on-surface-variant font-medium">${especialista.split('(')[0]}</td>
+      <td class="py-3 px-space-md">
+        <span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-sm truncate max-w-[180px] inline-block">${servicio}</span>
+      </td>
+      <td class="py-3 px-space-md whitespace-nowrap">
+        <span class="inline-flex items-center gap-1 font-label-sm text-label-sm px-2 py-0.5 rounded bg-secondary-fixed/40 text-on-secondary-fixed-variant">
+          <span class="material-symbols-outlined text-[14px]">check</span> ${metodoTexto.split('(')[0]}
+        </span>
+      </td>
+      <td class="py-3 px-space-md text-right font-headline-sm text-headline-sm font-bold text-on-surface">$${monto.toFixed(2)}</td>
+      <td class="py-3 px-space-md text-right text-on-surface-variant text-label-sm">$0.00</td>
+      <td class="py-3 px-space-md whitespace-nowrap text-center">
+        <div class="inline-flex items-center gap-1">
+          <button title="Imprimir Recibo" class="p-1.5 rounded hover:bg-surface-container text-primary transition-colors">
+            <span class="material-symbols-outlined text-[18px]">print</span>
+          </button>
+          <button title="WhatsApp" class="p-1.5 rounded hover:bg-secondary-fixed/30 text-secondary transition-colors">
+            <span class="material-symbols-outlined text-[18px]">chat</span>
+          </button>
+        </div>
+      </td>
+    `;
+
+    tbody.insertBefore(tr, tbody.firstChild);
+
+    // Incrementar número de folio sugerido
+    const numPart = parseInt(folio.split('-')[2]) + 1;
+    document.getElementById('folioSugerido').innerText = `2026-SEP-0${numPart < 10 ? '0' + numPart : numPart}`;
+
+    mostrarToast(`Cobro de $${monto.toFixed(2)} registrado con éxito para ${paciente}`);
+  }
+
+  function registrarGasto(e) {
+    e.preventDefault();
+    const concepto = document.getElementById('gastoConcepto').value;
+    const monto = document.getElementById('gastoMonto').value;
+    mostrarToast(`Egreso de $${monto} registrado en caja menor`);
+    document.getElementById('gastoConcepto').value = '';
+    document.getElementById('gastoMonto').value = '';
+  }
+
+  function actualizarArqueoRapido() {
+    let total = 0;
+    const inputs = document.querySelectorAll('.arqueo-input');
+    inputs.forEach(input => {
+      const val = parseFloat(input.getAttribute('data-val')) || 0;
+      const cant = parseFloat(input.value) || 0;
+      const sub = val * cant;
+      const row = input.closest('div');
+      const subLabel = row.querySelector('.subtotal-arq');
+      if (subLabel) subLabel.innerText = '$' + sub.toFixed(2);
+      total += sub;
+    });
+
+    document.getElementById('arqueoFisicoTotal').innerText = '$' + total.toFixed(2);
+    const teorico = 3230.00;
+    const diff = total - teorico;
+    const diffEl = document.getElementById('arqueoDiferencia');
+
+    if (Math.abs(diff) < 0.01) {
+      diffEl.innerText = 'Exacto ($0.00)';
+      diffEl.className = 'font-label-lg text-label-lg font-bold text-secondary';
+    } else if (diff > 0) {
+      diffEl.innerText = 'Sobrante (+$' + diff.toFixed(2) + ')';
+      diffEl.className = 'font-label-lg text-label-lg font-bold text-primary';
+    } else {
+      diffEl.innerText = 'Faltante (-$' + Math.abs(diff).toFixed(2) + ')';
+      diffEl.className = 'font-label-lg text-label-lg font-bold text-error';
+    }
+  }
+
+  function abrirCajonFisico() {
+    mostrarToast('Pulso ESC/POS enviado: Cajón portamonedas abierto');
+  }
+
+  function toggleCierreModal() {
+    const modal = document.getElementById('modalCierreCaja');
+    modal.classList.toggle('hidden');
+  }
+
+  function confirmarCierre() {
+    toggleCierreModal();
+    mostrarToast('Turno finalizado. Resumen de caja enviado al correo administrativo');
+  }
+
+  function abrirModalApertura() {
+    mostrarToast('Apertura validada: Monto inicial auditado $1,500.00 MXN');
+  }
+
+  function imprimirActaArqueo() {
+    window.print();
+  }
+
+  function irAHoy() {
+    const hoy = new Date().toISOString().split('T')[0];
+    document.getElementById('cajaFechaFiltro').value = hoy;
+    mostrarToast('Mostrando datos del turno actual de hoy');
+  }
+
+  function mostrarToast(msg) {
+    const toast = document.getElementById('toastNotificacion');
+    const toastMsg = document.getElementById('toastMessage');
+    toastMsg.innerText = msg;
+    toast.classList.remove('translate-y-24', 'opacity-0');
+    setTimeout(() => {
+      toast.classList.add('translate-y-24', 'opacity-0');
+    }, 3500);
+  }
+</script></main></div></body></html>

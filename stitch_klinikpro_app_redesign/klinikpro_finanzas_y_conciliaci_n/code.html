@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-background":"#0b1c30","surface-container-low":"#eff4ff","secondary":"#006c49","surface-dim":"#cbdbf5","on-secondary-fixed":"#002113","tertiary-container":"#005b8b","on-secondary":"#ffffff","surface-container":"#e5eeff","on-secondary-container":"#00714d","primary-fixed":"#cde5ff","secondary-fixed-dim":"#4edea3","on-primary":"#ffffff","surface":"#f8f9ff","primary-container":"#0f5b8b","error":"#ba1a1a","error-container":"#ffdad6","primary-fixed-dim":"#95ccff","tertiary-fixed-dim":"#93ccff","on-surface":"#0b1c30","surface-variant":"#d3e4fe","surface-container-high":"#dce9ff","on-error":"#ffffff","secondary-fixed":"#6ffbbe","inverse-on-surface":"#eaf1ff","on-tertiary-container":"#9fd1ff","inverse-surface":"#213145","outline-variant":"#c1c7d0","surface-bright":"#f8f9ff","primary":"#00436a","on-secondary-fixed-variant":"#005236","background":"#f8f9ff","on-tertiary":"#ffffff","inverse-primary":"#95ccff","tertiary-fixed":"#cce5ff","outline":"#717880","on-surface-variant":"#41474f","on-tertiary-fixed-variant":"#004b73","surface-container-highest":"#d3e4fe","on-primary-fixed-variant":"#004a75","on-error-container":"#93000a","on-primary-container":"#a2d1ff","on-primary-fixed":"#001d32","surface-container-lowest":"#ffffff","surface-tint":"#1d6393","on-tertiary-fixed":"#001d31","tertiary":"#004368","secondary-container":"#6cf8bb"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"space-xl":"2.5rem","space-xs":"0.25rem",gutter:"1.5rem",margin:"2rem","space-sm":"0.5rem","space-md":"1rem","space-lg":"1.5rem"},fontFamily:{"headline-xl":["Plus Jakarta Sans"],"body-md":["Inter"],"headline-lg-mobile":["Plus Jakarta Sans"],"label-sm":["Inter"],"headline-md":["Plus Jakarta Sans"],"label-lg":["Inter"],"body-lg":["Inter"],"headline-sm":["Plus Jakarta Sans"],"label-md":["Inter"],"headline-lg":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"body-sm":["Inter"]},fontSize:{"headline-xl":["36px",{lineHeight:"44px",letterSpacing:"-0.02em",fontWeight:"700"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"headline-lg-mobile":["22px",{lineHeight:"30px",letterSpacing:"0",fontWeight:"600"}],"label-sm":["10px",{lineHeight:"14px",letterSpacing:"0.04em",fontWeight:"600"}],"headline-md":["20px",{lineHeight:"28px",letterSpacing:"-0.005em",fontWeight:"600"}],"label-lg":["14px",{lineHeight:"20px",letterSpacing:"0.01em",fontWeight:"600"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"headline-sm":["16px",{lineHeight:"24px",fontWeight:"600"}],"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"500"}],"headline-lg":["28px",{lineHeight:"36px",letterSpacing:"-0.01em",fontWeight:"600"}],"headline-xl-mobile":["28px",{lineHeight:"36px",letterSpacing:"-0.01em",fontWeight:"700"}],"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between py-space-md overflow-y-auto"><div class="flex flex-col"><div class="px-space-lg py-space-sm flex items-center gap-space-sm mb-space-md"><img alt="KlinikPro Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XE05T0REYPACo6vO4vbbjvApRyuI0Fh434DhhSR2iwBPCvWPb6DVeM-Hip016ZrW72dxDWnrcZOKHJC7GJL8BgqjpjJUlyofKBWQX_3gQ4YgXHYHUlcV-Nq3dhMxrK7Xnl8sar7loOh-Fv7Pxy8denLR9OLUF-RAWl7VVAhtiuCDbEUSwAGV3xXpQ6L2XS9nf4O9I4ZzrA6ei8UAD1h2e1mFjlkoqs0Wg0rLrbscXm"/></div><div class="px-space-md mb-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold tracking-wider">Operaciones Clínicas</span></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary text-on-primary shadow-sm font-medium"><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="inicio" href="#">Inicio</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="pacientes" href="#">Pacientes</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="agenda" href="#">Agenda</a></nav><div class="px-space-md mt-space-md mb-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold tracking-wider">Gestión y Finanzas</span></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary text-on-primary shadow-sm font-medium"><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="caja" href="#">Caja</a><a aria-current="page" class="flex items-center px-space-md py-space-sm rounded-lg transition-colors bg-primary text-on-primary shadow-sm font-medium" data-path="finanzas" href="#">Finanzas</a></nav><div class="px-space-md mt-space-md mb-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold tracking-wider">Sistema y Soporte</span></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary text-on-primary shadow-sm font-medium"><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="configuracion" href="#">Configuración</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="ayuda" href="#">Ayuda</a></nav></div><div class="px-space-md pt-space-sm mt-space-md"><div class="bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-2 h-2 rounded-full bg-secondary"></div><div class="flex flex-col"><span class="font-label-sm text-label-sm text-on-surface font-semibold">Servidor Clínico</span><span class="font-label-sm text-label-sm text-on-surface-variant">En línea · v4.12.0</span></div></div><span class="material-symbols-outlined text-on-surface-variant text-[18px]">verified</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-lg flex-1 max-w-xl"><div class="relative w-full max-w-md"><span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span><input class="w-full h-10 pl-11 pr-space-md rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant text-body-sm font-body-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-[0_1px_8px_rgba(0,0,0,0.02)] transition-all" placeholder="Buscar por DNI, Nombre o N° de Historia Clínica..." type="text"/></div><div class="hidden xl:flex items-center gap-space-xs bg-surface-container-low px-space-md py-space-xs rounded-lg cursor-pointer hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-primary text-[18px]">apartment</span><div class="flex flex-col text-left"><span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Sede</span><span class="font-label-md text-label-md text-on-surface font-semibold truncate max-w-[190px]">Sede Central - Torre Médica Norte</span></div><span class="material-symbols-outlined text-on-surface-variant text-[18px]">expand_more</span></div></div><div class="flex items-center gap-space-md"><button class="flex items-center gap-space-xs bg-primary hover:bg-primary-container text-on-primary hover:text-on-primary-container px-space-md h-10 rounded-lg shadow-sm transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">add</span><span class="font-label-md text-label-md font-semibold">Nueva Consulta</span></button><div class="relative flex items-center justify-center"><button class="w-10 h-10 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full ring-2 ring-surface"></span></button></div><div class="flex items-center gap-space-sm pl-space-xs"><img alt="Dra. Anya Sharma Avatar" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpIQ4hAHznkSYu5Qd-RzcCxZLVtRmv_7t3bVTwntf3Bu-GZyr10qrUhp3rT3HGdXpxls7k2M3rb8nyY26deinblBbF4jA_pGznwlNUF34HeyEljZc9F0TUAbn3ZI1i_FtwW3Y6PQsyJ56x1p87DzaMteXorOesReMHi2oJlVHL5u3cRF_3Y0LKnNc7hZ05sE0n_VHewueKRky8Fw2oA53IkwatvIIlN5ixDY_KHat8u6FmBwWdiSFD"/><div class="hidden md:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-bold leading-tight">Dra. Anya Sharma</span><span class="font-label-sm text-label-sm text-secondary font-medium leading-none">Cardiología</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen px-space-lg py-space-lg"><div class="flex flex-col w-full gap-space-lg">
+<!-- Top Utility Bar / Header -->
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md pb-space-xs">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm mb-space-xs">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold tracking-wider bg-secondary-container/40 text-on-secondary-fixed-variant px-space-sm py-0.5 rounded-full">Auditoría Fiscal &amp; Tesorería</span>
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">sync</span>
+          Último cierre: Hoy 08:30 AM
+        </span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Finanzas y Salud Contable</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Monitoreo en tiempo real de flujos de caja, amortizaciones clínicas y liquidación bancaria.</p>
+</div>
+<!-- Actions & Period Filter -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="flex items-center bg-surface-container-low px-space-md py-space-xs rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-primary text-[18px] mr-space-xs">calendar_today</span>
+<div class="flex flex-col text-left mr-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Periodo Fiscal</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Octubre 2024 (Mes Corriente)</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px] cursor-pointer">arrow_drop_down</span>
+</div>
+<button class="flex items-center gap-space-xs bg-surface-container-lowest hover:bg-surface-container text-primary font-label-md text-label-md px-space-md h-10 rounded-lg shadow-sm transition-all" id="btn-export-pdf" onclick="triggerExportNotice()" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">picture_as_pdf</span>
+<span>Informe Oficial PDF</span>
+</button>
+<button class="flex items-center gap-space-xs bg-primary hover:bg-primary-container text-on-primary px-space-md h-10 rounded-lg shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span class="font-label-md text-label-md font-semibold">Nuevo Movimiento</span>
+</button>
+</div>
+</div>
+<!-- KPI Pulse Cards (4 Bento Stats) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Card 1: CxC -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-all">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Total CxC Pendiente</span>
+<span class="font-headline-lg text-headline-lg text-on-surface mt-space-xs font-bold tabular-nums">$14,800.00</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">assignment_late</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-space-md pt-space-xs">
+<div class="flex items-center gap-1 text-error font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+<span>$3,250.00 vencidos</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">14 pacientes</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-amber-400"></div>
+</div>
+<!-- Card 2: CxP -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-all">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">CxP por Vencer (15d)</span>
+<span class="font-headline-lg text-headline-lg text-on-surface mt-space-xs font-bold tabular-nums">$6,450.00</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-tertiary group-hover:bg-tertiary group-hover:text-on-tertiary transition-colors">
+<span class="material-symbols-outlined text-[20px]">receipt_long</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-space-md pt-space-xs">
+<div class="flex items-center gap-1 text-secondary font-label-sm text-label-sm font-medium">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>3 facturas urgentes</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">8 proveedores</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-primary"></div>
+</div>
+<!-- Card 3: Utilidad Acumulada -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-all">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Utilidad Neta Acumulada</span>
+<span class="font-headline-lg text-headline-lg text-secondary mt-space-xs font-bold tabular-nums">$38,200.00</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-secondary-container/40 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined text-[20px]">trending_up</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-space-md pt-space-xs">
+<div class="flex items-center gap-1 text-secondary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">north_east</span>
+<span>+12.4% vs mes anterior</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">EBITDA: 82%</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-secondary"></div>
+</div>
+<!-- Card 4: Margen Operativo -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-all">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Margen Operativo Bruto</span>
+<span class="font-headline-lg text-headline-lg text-on-surface mt-space-xs font-bold tabular-nums">78.4%</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">pie_chart</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-space-md pt-space-xs">
+<div class="w-full bg-surface-container-high rounded-full h-1.5 overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 78.4%"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant ml-space-sm font-semibold">Óptimo</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-secondary-fixed-dim"></div>
+</div>
+</div>
+<!-- Main Navigation Tabs -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-xs flex flex-col">
+<div class="flex flex-wrap items-center border-b border-surface-container gap-space-xs px-space-sm pt-space-xs">
+<button class="tab-button flex items-center gap-space-xs px-space-md py-space-sm rounded-lg font-label-lg text-label-lg transition-all bg-primary text-on-primary shadow-sm" id="tab-btn-cxc" onclick="switchTab('cxc')" type="button">
+<span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>
+<span>Cuentas por Cobrar (CxC)</span>
+<span class="ml-space-xs bg-surface-container-lowest/20 px-2 py-0.5 rounded-full text-label-sm font-bold">14</span>
+</button>
+<button class="tab-button flex items-center gap-space-xs px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" id="tab-btn-cxp" onclick="switchTab('cxp')" type="button">
+<span class="material-symbols-outlined text-[18px]">shopping_cart_checkout</span>
+<span>Cuentas por Pagar (CxP)</span>
+<span class="ml-space-xs bg-surface-container px-2 py-0.5 rounded-full text-label-sm font-bold">8</span>
+</button>
+<button class="tab-button flex items-center gap-space-xs px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" id="tab-btn-conciliacion" onclick="switchTab('conciliacion')" type="button">
+<span class="material-symbols-outlined text-[18px]">sync_alt</span>
+<span>Conciliación Bancaria</span>
+<span class="ml-space-xs bg-error-container text-on-error-container px-2 py-0.5 rounded-full text-label-sm font-bold">Diff: $0.00</span>
+</button>
+<button class="tab-button flex items-center gap-space-xs px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" id="tab-btn-estado" onclick="switchTab('estado')" type="button">
+<span class="material-symbols-outlined text-[18px]">analytics</span>
+<span>Estado Financiero Simplificado</span>
+</button>
+</div>
+<!-- TAB 1: Cuentas por Cobrar (CxC) -->
+<div class="tab-pane flex flex-col p-space-md gap-space-md" id="tab-content-cxc">
+<!-- Sub-bar filters -->
+<div class="flex flex-col md:flex-row items-center justify-between gap-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-sm w-full md:w-auto">
+<div class="relative w-full md:w-72">
+<span class="material-symbols-outlined absolute left-space-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full h-9 pl-9 pr-space-sm rounded bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant text-body-sm font-body-sm focus:outline-none focus:ring-1 focus:ring-primary shadow-xs" placeholder="Buscar paciente o concepto..." type="text"/>
+</div>
+<select class="h-9 px-space-sm rounded bg-surface-container-lowest text-on-surface text-body-sm font-body-sm focus:outline-none">
+<option>Todos los Estados</option>
+<option>Solo Vencidos</option>
+<option>Pendientes</option>
+<option>Pagados (Últimos 7 días)</option>
+</select>
+</div>
+<div class="flex items-center gap-space-sm self-end md:self-auto">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Filtrar por Especialidad:</span>
+<span class="bg-surface-container-highest px-space-sm py-1 rounded text-label-sm font-medium text-on-surface">Cardiología (8)</span>
+<span class="bg-surface-container-lowest px-space-sm py-1 rounded text-label-sm font-medium text-on-surface-variant cursor-pointer hover:bg-surface-container">Traumatología (4)</span>
+<span class="bg-surface-container-lowest px-space-sm py-1 rounded text-label-sm font-medium text-on-surface-variant cursor-pointer hover:bg-surface-container">Odontología (2)</span>
+</div>
+</div>
+<!-- Table Container -->
+<div class="overflow-x-auto rounded-lg shadow-xs bg-surface-container-lowest">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-md">Paciente / Folio HC</th>
+<th class="py-space-sm px-space-md">Tratamiento &amp; Concepto</th>
+<th class="py-space-sm px-space-md">Fecha Emisión</th>
+<th class="py-space-sm px-space-md">Vencimiento</th>
+<th class="py-space-sm px-space-md text-right">Saldo Deudor</th>
+<th class="py-space-sm px-space-md text-center">Estado</th>
+<th class="py-space-sm px-space-md text-right">Acción Operativa</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container text-body-sm font-body-sm text-on-surface">
+<!-- Row 1 (Vencido) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-error-container text-on-error-container flex items-center justify-center font-bold text-label-sm">MC</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Mateo Calderón Ramos</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">HC-884920 · DNI 44.920.118</span>
+</div>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Ecocardiograma Doppler Color + Consulta</span>
+<span class="text-label-sm text-on-surface-variant">Dr. Javier Palacios (Cardio)</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-on-surface-variant">15/09/2024</td>
+<td class="py-space-sm px-space-md text-error font-semibold">30/09/2024 (Hace 22d)</td>
+<td class="py-space-sm px-space-md text-right font-bold text-error tabular-nums">$1,850.00</td>
+<td class="py-space-sm px-space-md text-center">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-red-100 text-red-800 text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse"></span>
+                  VENCIDO
+                </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="inline-flex items-center gap-1 bg-secondary text-on-secondary hover:bg-on-secondary-container px-space-sm py-1.5 rounded font-label-sm text-label-sm font-semibold shadow-xs transition-colors" onclick="cobrarModal('Mateo Calderón Ramos', '$1,850.00', 'Ecocardiograma Doppler')">
+<span class="material-symbols-outlined text-[16px]">payments</span>
+                  Cobrar en Caja
+                </button>
+</td>
+</tr>
+<!-- Row 2 (Pendiente) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-primary flex items-center justify-center font-bold text-label-sm">VG</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Valeria Guzmán Vega</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">HC-902411 · DNI 38.102.559</span>
+</div>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Cateterismo Ambulatorio y Monitoreo</span>
+<span class="text-label-sm text-on-surface-variant">Dra. Anya Sharma</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-on-surface-variant">08/10/2024</td>
+<td class="py-space-sm px-space-md text-on-surface-variant">28/10/2024 (En 6d)</td>
+<td class="py-space-sm px-space-md text-right font-bold text-on-surface tabular-nums">$4,200.00</td>
+<td class="py-space-sm px-space-md text-center">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-amber-100 text-amber-900 text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                  PENDIENTE
+                </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="inline-flex items-center gap-1 bg-secondary text-on-secondary hover:bg-on-secondary-container px-space-sm py-1.5 rounded font-label-sm text-label-sm font-semibold shadow-xs transition-colors" onclick="cobrarModal('Valeria Guzmán Vega', '$4,200.00', 'Cateterismo Ambulatorio')">
+<span class="material-symbols-outlined text-[16px]">payments</span>
+                  Cobrar en Caja
+                </button>
+</td>
+</tr>
+<!-- Row 3 (Pendiente) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-primary flex items-center justify-center font-bold text-label-sm">ES</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Esteban Salazar Ruiz</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">HC-749102 · DNI 22.881.904</span>
+</div>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Prueba de Esfuerzo Ergométrica + Holter 24h</span>
+<span class="text-label-sm text-on-surface-variant">Dra. Anya Sharma</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-on-surface-variant">14/10/2024</td>
+<td class="py-space-sm px-space-md text-on-surface-variant">04/11/2024 (En 13d)</td>
+<td class="py-space-sm px-space-md text-right font-bold text-on-surface tabular-nums">$950.00</td>
+<td class="py-space-sm px-space-md text-center">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-amber-100 text-amber-900 text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                  PENDIENTE
+                </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="inline-flex items-center gap-1 bg-secondary text-on-secondary hover:bg-on-secondary-container px-space-sm py-1.5 rounded font-label-sm text-label-sm font-semibold shadow-xs transition-colors" onclick="cobrarModal('Esteban Salazar Ruiz', '$950.00', 'Prueba de Esfuerzo')">
+<span class="material-symbols-outlined text-[16px]">payments</span>
+                  Cobrar en Caja
+                </button>
+</td>
+</tr>
+<!-- Row 4 (Pagado reciente) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors opacity-80">
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-secondary/10 text-secondary flex items-center justify-center font-bold text-label-sm">LM</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Luciana Morales P.</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">HC-992100 · DNI 41.200.781</span>
+</div>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Rehabilitación Cardiopulmonar (Sesión 4/10)</span>
+<span class="text-label-sm text-on-surface-variant">Lic. Andrés Bellido</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-on-surface-variant">19/10/2024</td>
+<td class="py-space-sm px-space-md text-on-surface-variant">Liquidado 20/10</td>
+<td class="py-space-sm px-space-md text-right font-semibold text-secondary tabular-nums">$620.00</td>
+<td class="py-space-sm px-space-md text-center">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                  PAGADO
+                </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="inline-flex items-center gap-1 bg-surface-container text-on-surface-variant px-space-sm py-1.5 rounded font-label-sm text-label-sm font-medium hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">receipt</span>
+                  Ver Recibo
+                </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Action Footer for CxC -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-sm pt-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span>Mostrando 4 de 14 registros de cuentas de pacientes activos</span>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1 rounded bg-surface-container text-on-surface disabled:opacity-50">Anterior</button>
+<span class="px-space-sm py-1 font-bold text-on-surface">1</span>
+<button class="px-space-sm py-1 rounded bg-surface-container text-on-surface hover:bg-surface-container-high">2</button>
+<button class="px-space-sm py-1 rounded bg-surface-container text-on-surface hover:bg-surface-container-high">Siguiente</button>
+</div>
+</div>
+</div>
+<!-- TAB 2: Cuentas por Pagar (CxP) -->
+<div class="tab-pane hidden flex-col p-space-md gap-space-md" id="tab-content-cxp">
+<!-- CxP Alerts Bar -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="bg-error-container/40 p-space-sm rounded-lg flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-error text-[28px]">notification_important</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-error-container">Vence hoy: Oxígeno Medicinal</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Linde Gas S.A. · $1,280.00</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[28px]">event_repeat</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Pagos Recurrentes del Mes</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">4 servicios programados (Alquiler, Software, Residuos)</span>
+</div>
+</div>
+<div class="bg-secondary-container/30 p-space-sm rounded-lg flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[28px]">verified_user</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-secondary-fixed-variant">Retenciones y Facturas Validadas</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">100% cotejadas con Agencia Tributaria</span>
+</div>
+</div>
+</div>
+<!-- Table Container CxP -->
+<div class="overflow-x-auto rounded-lg shadow-xs bg-surface-container-lowest">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-md">Proveedor / Razón Social</th>
+<th class="py-space-sm px-space-md">Categoría de Gasto</th>
+<th class="py-space-sm px-space-md">Frecuencia</th>
+<th class="py-space-sm px-space-md">Vencimiento</th>
+<th class="py-space-sm px-space-md text-right">Importe Facturado</th>
+<th class="py-space-sm px-space-md text-center">Alerta de Pago</th>
+<th class="py-space-sm px-space-md text-right">Acción</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container text-body-sm font-body-sm text-on-surface">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">Linde Gas Healthcare S.A.</span>
+<span class="text-label-sm text-on-surface-variant">Factura B-002910 · RUC 20491029411</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="px-space-xs py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface">Insumos Críticos / Gases</span>
+</td>
+<td class="py-space-sm px-space-md text-on-surface-variant">Mensual (Día 22)</td>
+<td class="py-space-sm px-space-md text-error font-bold">22/10/2024 (HOY)</td>
+<td class="py-space-sm px-space-md text-right font-bold text-error tabular-nums">$1,280.00</td>
+<td class="py-space-sm px-space-md text-center">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-red-100 text-red-800 text-label-sm font-bold">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
+                  PAGO URGENTE
+                </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="bg-primary text-on-primary hover:bg-primary-container px-space-sm py-1.5 rounded font-label-sm text-label-sm font-semibold shadow-xs">
+                  Transferir Ahora
+                </button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">Medtronic Cardio Devices Corp.</span>
+<span class="text-label-sm text-on-surface-variant">Factura F-88102 · Stents e introductores</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="px-space-xs py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface">Material Quirúrgico</span>
+</td>
+<td class="py-space-sm px-space-md text-on-surface-variant">Por reposición de lote</td>
+<td class="py-space-sm px-space-md text-on-surface">29/10/2024 (En 7d)</td>
+<td class="py-space-sm px-space-md text-right font-bold text-on-surface tabular-nums">$3,420.00</td>
+<td class="py-space-sm px-space-md text-center">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-amber-100 text-amber-900 text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                  POR VENCER
+                </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="bg-surface-container text-on-surface hover:bg-surface-container-high px-space-sm py-1.5 rounded font-label-sm text-label-sm font-semibold">
+                  Programar
+                </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">Torre Médica Norte Inmobiliaria</span>
+<span class="text-label-sm text-on-surface-variant">Arrendamiento Módulos 301-304</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="px-space-xs py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface">Infraestructura Fija</span>
+</td>
+<td class="py-space-sm px-space-md text-on-surface-variant">Mensual Recurrente</td>
+<td class="py-space-sm px-space-md text-on-surface">05/11/2024 (En 14d)</td>
+<td class="py-space-sm px-space-md text-right font-bold text-on-surface tabular-nums">$1,750.00</td>
+<td class="py-space-sm px-space-md text-center">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-blue-100 text-blue-900 text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  EN TIEMPO
+                </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="bg-surface-container text-on-surface hover:bg-surface-container-high px-space-sm py-1.5 rounded font-label-sm text-label-sm font-semibold">
+                  Ver Contrato
+                </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- TAB 3: Conciliación Bancaria -->
+<div class="tab-pane hidden flex-col p-space-md gap-space-md" id="tab-content-conciliacion">
+<!-- Split Comparative Panel -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-md">
+<!-- Saldo Según Banco -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between">
+<div class="flex items-center justify-between pb-space-sm border-b border-surface-container">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">account_balance</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Saldo según Banco (Extracto Oficial)</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Cuenta Corriente Operativa BCP N° 191-449102-0-12</span>
+</div>
+</div>
+<span class="bg-secondary/10 text-secondary px-space-sm py-0.5 rounded font-label-sm text-label-sm font-bold">API CONECTADA</span>
+</div>
+<div class="py-space-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Saldo al Corte (Hoy 00:00h)</span>
+<div class="flex items-baseline gap-space-xs mt-1">
+<span class="font-headline-xl text-headline-xl font-bold text-on-surface tabular-nums">$52,430.50</span>
+<span class="font-label-md text-label-md text-on-surface-variant">USD</span>
+</div>
+</div>
+<!-- Line items bank side -->
+<div class="bg-surface-container-lowest rounded-lg p-space-sm flex flex-col gap-space-xs text-body-sm">
+<div class="flex justify-between text-on-surface-variant font-label-sm text-label-sm font-semibold border-b border-surface-container pb-1">
+<span>Partidas en Banco pendientes de Libro</span>
+<span>Monto</span>
+</div>
+<div class="flex justify-between items-center py-1">
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-amber-600">credit_card</span>
+                Comisiones POS Visa/Mastercard (21/10)
+              </span>
+<span class="font-medium text-error tabular-nums">-$85.20</span>
+</div>
+<div class="flex justify-between items-center py-1">
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-secondary">trending_up</span>
+                Intereses devengados depósito a plazo
+              </span>
+<span class="font-medium text-secondary tabular-nums">+$34.70</span>
+</div>
+</div>
+</div>
+<!-- Saldo en Libros (KlinikPro) -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between">
+<div class="flex items-center justify-between pb-space-sm border-b border-surface-container">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-tertiary text-[24px]">menu_book</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Saldo en Libros Contables (KlinikPro)</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Libro Mayor Mayorizado Electrónico</span>
+</div>
+</div>
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-space-sm py-0.5 rounded font-label-sm text-label-sm font-bold">ACTUALIZADO</span>
+</div>
+<div class="py-space-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Saldo Contable Registrado</span>
+<div class="flex items-baseline gap-space-xs mt-1">
+<span class="font-headline-xl text-headline-xl font-bold text-on-surface tabular-nums">$52,380.00</span>
+<span class="font-label-md text-label-md text-on-surface-variant">USD</span>
+</div>
+</div>
+<!-- Line items ledger side -->
+<div class="bg-surface-container-lowest rounded-lg p-space-sm flex flex-col gap-space-xs text-body-sm">
+<div class="flex justify-between text-on-surface-variant font-label-sm text-label-sm font-semibold border-b border-surface-container pb-1">
+<span>Partidas en Tránsito (Libros vs Banco)</span>
+<span>Monto</span>
+</div>
+<div class="flex justify-between items-center py-1">
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">schedule_send</span>
+                Depósitos en tránsito (Cheque #4012 Paciente Ruiz)
+              </span>
+<span class="font-medium text-secondary tabular-nums">+$450.00</span>
+</div>
+<div class="flex justify-between items-center py-1">
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-outline">pending_actions</span>
+                Cheques girados aún no cobrados (#1102 BioLab)
+              </span>
+<span class="font-medium text-error tabular-nums">-$499.50</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Reconciliation Settlement Bar -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md border border-surface-container flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-full bg-secondary-container/50 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[28px]">check_circle</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">Conciliación Cuadrada</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Diferencia Neta de Ajuste: <span class="font-bold tabular-nums text-secondary">$0.00 USD</span></h4>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Todas las partidas en tránsito y comisiones bancarias han sido imputadas correctamente.</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="bg-surface-container text-on-surface px-space-md py-2 rounded-lg font-label-md text-label-md hover:bg-surface-container-high transition-colors" type="button">
+            Revisar Partidas Históricas
+          </button>
+<button class="bg-secondary text-on-secondary px-space-md py-2 rounded-lg font-label-md text-label-md font-semibold hover:bg-on-secondary-container transition-colors shadow-xs" type="button">
+            Cerrar Acta de Conciliación
+          </button>
+</div>
+</div>
+</div>
+<!-- TAB 4: Estado Financiero Simplificado -->
+<div class="tab-pane hidden flex-col p-space-md gap-space-lg" id="tab-content-estado">
+<!-- Financial Topline Indicators -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<div class="bg-surface-container-low rounded-lg p-space-md flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">1. Ingresos Totales Clínicos</span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold mt-1 tabular-nums">$48,720.00</span>
+<span class="font-label-sm text-label-sm text-secondary mt-space-xs font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span> +8.5% este mes
+          </span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-md flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">2. Gastos Operativos (OPEX)</span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold mt-1 tabular-nums">$9,310.00</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-space-xs">Sueldos, alquiler e insumos</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-md flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">3. Comisiones Pasarelas / Bancos</span>
+<span class="font-headline-md text-headline-md text-error font-bold mt-1 tabular-nums">$1,210.00</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-space-xs">2.48% tasa promedio cobro</span>
+</div>
+<div class="bg-secondary/10 rounded-lg p-space-md flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-bold">4. Utilidad Operativa Neta</span>
+<span class="font-headline-md text-headline-md text-secondary font-bold mt-1 tabular-nums">$38,200.00</span>
+<span class="font-label-sm text-label-sm text-secondary mt-space-xs font-bold">Margen Efectivo: 78.4%</span>
+</div>
+</div>
+<!-- Graph & Breakdown Bento Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Monthly Comparison Chart (SVG) -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-xl p-space-md border border-surface-container flex flex-col">
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Ingresos vs Gastos Operativos</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Evolución mensual consolidada periodo Mayo - Octubre 2024</p>
+</div>
+<div class="flex items-center gap-space-md text-label-sm">
+<span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-xs bg-primary"></span> Ingresos Clínicos</span>
+<span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-xs bg-error"></span> Costos &amp; Gastos</span>
+</div>
+</div>
+<!-- Inline SVG Visual Bar Chart -->
+<div class="w-full h-64 flex items-end">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 600 220">
+<!-- Grid lines -->
+<line stroke="#E2E8F0" stroke-width="1" x1="0" x2="600" y1="180" y2="180"></line>
+<line stroke="#E2E8F0" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="600" y1="120" y2="120"></line>
+<line stroke="#E2E8F0" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="600" y1="60" y2="60"></line>
+<!-- Mayo -->
+<rect fill="#00436a" height="115" rx="3" width="26" x="35" y="65"></rect>
+<rect fill="#ba1a1a" height="35" rx="3" width="26" x="65" y="145"></rect>
+<text fill="#717880" font-size="11" text-anchor="middle" x="63" y="200">Mayo</text>
+<!-- Junio -->
+<rect fill="#00436a" height="125" rx="3" width="26" x="135" y="55"></rect>
+<rect fill="#ba1a1a" height="40" rx="3" width="26" x="165" y="140"></rect>
+<text fill="#717880" font-size="11" text-anchor="middle" x="163" y="200">Junio</text>
+<!-- Julio -->
+<rect fill="#00436a" height="135" rx="3" width="26" x="235" y="45"></rect>
+<rect fill="#ba1a1a" height="38" rx="3" width="26" x="265" y="142"></rect>
+<text fill="#717880" font-size="11" text-anchor="middle" x="263" y="200">Julio</text>
+<!-- Agosto -->
+<rect fill="#00436a" height="140" rx="3" width="26" x="335" y="40"></rect>
+<rect fill="#ba1a1a" height="42" rx="3" width="26" x="365" y="138"></rect>
+<text fill="#717880" font-size="11" text-anchor="middle" x="363" y="200">Agosto</text>
+<!-- Septiembre -->
+<rect fill="#00436a" height="150" rx="3" width="26" x="435" y="30"></rect>
+<rect fill="#ba1a1a" height="45" rx="3" width="26" x="465" y="135"></rect>
+<text fill="#717880" font-size="11" text-anchor="middle" x="463" y="200">Sept</text>
+<!-- Octubre (Actual) -->
+<rect fill="#006c49" height="160" rx="3" width="26" x="530" y="20"></rect>
+<rect fill="#ba1a1a" height="38" rx="3" width="26" x="560" y="142"></rect>
+<text fill="#006c49" font-size="11" font-weight="bold" text-anchor="middle" x="558" y="200">Oct (Act)</text>
+</svg>
+</div>
+</div>
+<!-- Revenue by Service Donut/Progress distribution -->
+<div class="lg:col-span-4 bg-surface-container-lowest rounded-xl p-space-md border border-surface-container flex flex-col justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Distribución por Servicio</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Generación de facturación clínica</p>
+</div>
+<div class="flex flex-col gap-space-md my-space-md">
+<!-- Item 1 -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="font-semibold text-on-surface">Cardiología Intervencionista</span>
+<span class="text-on-surface-variant tabular-nums font-bold">54% ($26,308.80)</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 54%"></div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="font-semibold text-on-surface">Diagnóstico por Imágenes &amp; Ecografía</span>
+<span class="text-on-surface-variant tabular-nums font-bold">26% ($12,667.20)</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 26%"></div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="font-semibold text-on-surface">Consultas Externas y Chequeos</span>
+<span class="text-on-surface-variant tabular-nums font-bold">14% ($6,820.80)</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full rounded-full" style="width: 14%"></div>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="font-semibold text-on-surface">Procedimientos Menores Ambulatorios</span>
+<span class="text-on-surface-variant tabular-nums font-bold">6% ($2,923.20)</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-amber-500 h-full rounded-full" style="width: 6%"></div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between text-label-sm">
+<span class="text-on-surface-variant">Tasa de cobranza efectiva:</span>
+<span class="font-bold text-secondary">94.2% a 30 días</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal / Floating Notification for Direct Cash Receipt (Interactive Drawer/Modal) -->
+<div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-xs z-50 hidden items-center justify-center p-space-md" id="modal-caja">
+<div class="bg-surface-container-lowest rounded-xl max-w-lg w-full p-space-lg shadow-xl flex flex-col gap-space-md animate-in fade-in zoom-in-95">
+<div class="flex items-center justify-between border-b border-surface-container pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">point_of_sale</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Cobro Directo en Caja</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Recepción y Facturación Inmediata</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface" onclick="closeModalCaja()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="flex flex-col gap-space-sm bg-surface-container-low p-space-md rounded-lg">
+<div class="flex justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Paciente:</span>
+<span class="font-label-md text-label-md font-bold text-on-surface" id="modal-patient-name">--</span>
+</div>
+<div class="flex justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Concepto:</span>
+<span class="font-body-sm text-body-sm text-on-surface" id="modal-concept-name">--</span>
+</div>
+<div class="flex justify-between pt-1 border-t border-surface-container">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Total a Percibir:</span>
+<span class="font-headline-sm text-headline-sm font-bold text-secondary tabular-nums" id="modal-total-amount">--</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Método de Cobro:</label>
+<div class="grid grid-cols-3 gap-space-xs">
+<button class="border border-primary bg-primary-fixed/20 text-primary py-2 rounded text-label-sm font-semibold flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">credit_card</span> Tarjeta
+          </button>
+<button class="border border-surface-container text-on-surface-variant hover:bg-surface-container py-2 rounded text-label-sm font-semibold flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">payments</span> Efectivo
+          </button>
+<button class="border border-surface-container text-on-surface-variant hover:bg-surface-container py-2 rounded text-label-sm font-semibold flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">qr_code</span> Transfer/QR
+          </button>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-xs">
+<button class="px-space-md py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container" onclick="closeModalCaja()" type="button">Cancelar</button>
+<button class="px-space-md py-2 rounded-lg font-label-md text-label-md bg-secondary text-on-secondary font-bold hover:bg-on-secondary-container shadow-xs flex items-center gap-1" onclick="submitCobro()" type="button">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+          Confirmar e Imprimir Factura
+        </button>
+</div>
+</div>
+</div>
+<!-- Toast Notification Template -->
+<div class="fixed bottom-6 right-6 bg-inverse-surface text-inverse-on-surface px-space-md py-space-sm rounded-lg shadow-xl flex items-center gap-space-sm transition-all duration-300 opacity-0 pointer-events-none z-50" id="toast-notification">
+<span class="material-symbols-outlined text-secondary-fixed text-[20px]" id="toast-icon">check_circle</span>
+<span class="font-body-sm text-body-sm font-medium" id="toast-text">Acción completada con éxito</span>
+</div>
+</div>
+<script>
+  function switchTab(tabId) {
+    const panes = ['cxc', 'cxp', 'conciliacion', 'estado'];
+    panes.forEach(id => {
+      const pane = document.getElementById(`tab-content-${id}`);
+      const btn = document.getElementById(`tab-btn-${id}`);
+      if (id === tabId) {
+        pane.classList.remove('hidden');
+        btn.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+        btn.classList.remove('text-on-surface-variant', 'hover:bg-surface-container');
+      } else {
+        pane.classList.add('hidden');
+        btn.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+        btn.classList.add('text-on-surface-variant', 'hover:bg-surface-container');
+      }
+    });
+  }
+
+  function cobrarModal(patient, amount, concept) {
+    document.getElementById('modal-patient-name').innerText = patient;
+    document.getElementById('modal-total-amount').innerText = amount;
+    document.getElementById('modal-concept-name').innerText = concept;
+    const modal = document.getElementById('modal-caja');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  }
+
+  function closeModalCaja() {
+    const modal = document.getElementById('modal-caja');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
+
+  function submitCobro() {
+    closeModalCaja();
+    showToast('Cobro registrado y enviado a caja exitosamente.', 'check_circle');
+  }
+
+  function triggerExportNotice() {
+    showToast('Generando informe fiscal oficial PDF con membrete KlinikPro...', 'picture_as_pdf');
+  }
+
+  function showToast(message, icon) {
+    const toast = document.getElementById('toast-notification');
+    const toastText = document.getElementById('toast-text');
+    const toastIcon = document.getElementById('toast-icon');
+    toastText.innerText = message;
+    toastIcon.innerText = icon || 'check_circle';
+    
+    toast.classList.remove('opacity-0', 'pointer-events-none');
+    toast.classList.add('opacity-100');
+    
+    setTimeout(() => {
+      toast.classList.remove('opacity-100');
+      toast.classList.add('opacity-0', 'pointer-events-none');
+    }, 3200);
+  }
+</script></main></div></body></html>
