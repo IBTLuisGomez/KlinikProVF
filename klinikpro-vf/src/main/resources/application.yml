@@ -1,25 +1,63 @@
 server:
-    port: 8081
+  port: 8081
+
 spring:
-    datasource:
-        url: jdbc:postgresql://localhost:5433/klinikpro # (o 5432 según lo que quedó)
-        username: klinik
-        password: klinik_dev
-    jpa:
-        hibernate:
-            ddl-auto: validate
-        open-in-view: false
+  application:
+    name: klinikpro-vf
+  datasource:
+    url: jdbc:postgresql://localhost:5433/klinikpro
+    username: klinik
+    password: klinik_dev
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: America/Mexico_City
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
 management:
-    endpoints:
-        web:
-            exposure:
-                include: health,info
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
 app:
-    version: VF1-0.0.1
+  version: VF1-1.0.0
+  cors:
+    allowed-origins: "http://localhost:5500,http://127.0.0.1:5500,http://localhost:3000,http://localhost:5173,null"
+
 security:
-    jwt:
-        secret: "CAMBIA_ESTO_por_una_cadena_larga_de_al_menos_64_caracteres_aleatorios_123456"
-        expiration-ms: 86400000   # 24 h
+  jwt:
+    secret: "CAMBIA_ESTO_por_una_cadena_larga_de_al_menos_64_caracteres_aleatorios_1234567890"
+    expiration-ms: 86400000
+
 logging:
-    level:
-        org.springframework.security: DEBUG
+  level:
+    systems.cytohelix: INFO
+    org.springframework.security: WARN
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    url: jdbc:h2:mem:klinikpro;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  flyway:
+    enabled: false
+
+security:
+  jwt:
+    secret: "test-secret-key-for-unit-tests-only-min-32-chars-xx"
+    expiration-ms: 3600000

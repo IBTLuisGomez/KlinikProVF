@@ -1,11 +1,20 @@
 services:
   db:
-    image: postgres:16
+    image: postgres:16-alpine
+    container_name: klinikpro-v1-db
     environment:
       POSTGRES_DB: klinikpro
       POSTGRES_USER: klinik
       POSTGRES_PASSWORD: klinik_dev
-    ports: ["5433:5432"]
-    volumes: ["pgdata:/var/lib/postgresql/data"]
+    ports:
+      - "5433:5432"
+    volumes:
+      - klinikpro_v1_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U klinik -d klinikpro"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
 volumes:
-  pgdata:
+  klinikpro_v1_pg:
