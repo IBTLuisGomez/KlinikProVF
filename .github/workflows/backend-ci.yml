@@ -1,0 +1,49 @@
+name: Backend CI (klinikpro-vf)
+
+# Verificación real de compilador Java 25 en cada push/PR — hasta ahora esto
+# solo se podía confirmar corriendo `mvn clean compile` manualmente porque
+# ningún entorno de trabajo con Claude tenía JDK 25 disponible. Con esto,
+# cada cambio queda validado automáticamente por GitHub Actions.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "klinikpro-vf/**"
+      - ".github/workflows/backend-ci.yml"
+  pull_request:
+    paths:
+      - "klinikpro-vf/**"
+      - ".github/workflows/backend-ci.yml"
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: klinikpro-vf
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 25 (Temurin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+          cache: maven
+          cache-dependency-path: klinikpro-vf/pom.xml
+
+      - name: Compile
+        run: mvn -B -ntp clean compile
+
+      - name: Test (perfil "test", H2 en memoria — no necesita Postgres)
+        run: mvn -B -ntp test
+
+      - name: Publicar resultados de tests
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports
+          path: klinikpro-vf/target/surefire-reports/
+          retention-days: 14

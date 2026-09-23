@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import systems.cytohelix.klinikpro_vf.auth.Roles;
 import systems.cytohelix.klinikpro_vf.reports.ReportDtos.DashboardReport;
+import systems.cytohelix.klinikpro_vf.reports.ReportDtos.FollowUpRow;
 import systems.cytohelix.klinikpro_vf.reports.ReportDtos.PatientHistoryReport;
 import systems.cytohelix.klinikpro_vf.reports.ReportDtos.PatientSummaryRow;
 
@@ -42,5 +43,12 @@ public class ReportController {
     @GetMapping("/pacientes")
     public List<PatientSummaryRow> patients() {
         return svc.patients();
+    }
+
+    /** Pacientes sin próxima cita — para que recepción los contacte y agende seguimiento. */
+    @PreAuthorize(Roles.ANY)
+    @GetMapping("/seguimiento")
+    public List<FollowUpRow> followUp() {
+        return svc.followUp();
     }
 }

@@ -16,7 +16,9 @@ import systems.cytohelix.klinikpro_vf.finance.FinanceDtos.BankMovementReq;
 /** Movimientos bancarios y conciliación manual simple (marcar {@code reconciled}). */
 @Service
 public class BankMovementService {
-    private static final Set<String> VALID_KINDS = Set.of("deposito", "cargo");
+    // Fase 5.1: se agrega "comision" (comisiones bancarias, distintas de cargos
+    // normales) — ver AUDITORIA_KLINIKPROVF_HTML.md.
+    private static final Set<String> VALID_KINDS = Set.of("deposito", "cargo", "comision");
 
     private final BankMovementRepository repo;
 
@@ -44,7 +46,7 @@ public class BankMovementService {
     @Transactional
     public BankMovement create(BankMovementReq r) {
         if (r.kind() == null || !VALID_KINDS.contains(r.kind().toLowerCase()))
-            throw new IllegalArgumentException("Tipo de movimiento inválido (usa deposito|cargo)");
+            throw new IllegalArgumentException("Tipo de movimiento inválido (usa deposito|cargo|comision)");
         if (r.amount() == null || r.amount().signum() <= 0)
             throw new IllegalArgumentException("El monto debe ser mayor a cero");
 

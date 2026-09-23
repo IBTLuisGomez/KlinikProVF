@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -58,6 +59,23 @@ public class AgendaDtos {
 
     /** CU-04: Reprogramar Cita. */
     public record AppointmentRescheduleReq(OffsetDateTime newStartsAt) { }
+
+    /**
+     * Serie de citas recurrentes: agenda {@code occurrences} citas iguales a
+     * partir de {@code startsAt}, cada {@code frequency} ("semanal" [default],
+     * "quincenal" o "mensual").
+     */
+    public record AppointmentSeriesReq(
+            UUID patientId,
+            UUID specialistId,
+            UUID serviceId,
+            UUID roomId,
+            OffsetDateTime startsAt,
+            String frequency,
+            Integer occurrences) { }
+
+    /** Resultado de crear una serie: lo que sí se pudo agendar y lo que se omitió por conflicto, con el motivo. */
+    public record AppointmentSeriesResult(UUID seriesId, List<Appointment> created, List<String> skipped) { }
 
     public record WaitlistReq(
             UUID patientId,

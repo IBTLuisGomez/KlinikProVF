@@ -2,6 +2,7 @@ package systems.cytohelix.klinikpro_vf.agenda;
 
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,10 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 import systems.cytohelix.klinikpro_vf.agenda.AgendaDtos.AppointmentCancelReq;
 import systems.cytohelix.klinikpro_vf.agenda.AgendaDtos.AppointmentCreateReq;
 import systems.cytohelix.klinikpro_vf.agenda.AgendaDtos.AppointmentRescheduleReq;
+import systems.cytohelix.klinikpro_vf.agenda.AgendaDtos.AppointmentSeriesReq;
+import systems.cytohelix.klinikpro_vf.agenda.AgendaDtos.AppointmentSeriesResult;
 import systems.cytohelix.klinikpro_vf.auth.CurrentUser;
 import systems.cytohelix.klinikpro_vf.auth.Roles;
 
-/** CU-01 a CU-08: ciclo de vida completo de la cita. */
+/** CU-01 a CU-09: ciclo de vida completo de la cita, incluida la serie recurrente (CU-09). */
 @RestController
 @RequestMapping("/api/appointments")
 public class AppointmentController {
@@ -89,4 +92,23 @@ public class AppointmentController {
     @PreAuthorize(Roles.FRONT_DESK)
     @PostMapping("/{id}/no-show")
     public Appointment noShow(@PathVariable UUID id) { return svc.markNoShow(id, CurrentUser.id()); }
+
+    /** CU-09: Agendar serie de citas recurrentes. */
+    @PreAuthorize(Roles.FRONT_DESK)
+    @PostMapping("/series")
+    public AppointmentSeriesResult createSeries(@RequestBody AppointmentSeriesReq r) {
+        return svc.createSeries(r, CurrentUser.id());
+    }
+
+    @PreAuthorize(Roles.ANY)
+    @GetMapping("/series/{seriesId}")
+    public List<Appointment> getSeries(@PathVariable UUID seriesId) { return svc.listSeries(seriesId); }
+
+    /** Cancela las ocurrencias futuras aún activas de la serie. */
+    @PreAuthorize(Roles.FRONT_DESK)
+    @PostMapping("/series/{seriesId}/cancel")
+    public Map<String, Object> cancelSeries(@PathVariable UUID seriesId) {
+        int cancelled = svc.cancelSeries(seriesId, CurrentUser.id());
+        return Map.of("cancelledCount", cancelled);
+    }
 }

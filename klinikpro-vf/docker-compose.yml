@@ -16,5 +16,19 @@ services:
       timeout: 5s
       retries: 12
 
+  # Frontend (React/Vite) servido como estáticos vía nginx.
+  # El backend (klinikpro-vf) todavía NO está dockerizado — sigue corriendo
+  # con `mvn spring-boot:run` en el host, por eso VITE_API_BASE_URL apunta
+  # a localhost:8081 y no a un nombre de servicio de compose.
+  web:
+    build:
+      context: ../klinikpro-vf-web
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: http://localhost:8081
+    container_name: klinikpro-v1-web
+    ports:
+      - "5173:80"
+
 volumes:
   klinikpro_v1_pg:

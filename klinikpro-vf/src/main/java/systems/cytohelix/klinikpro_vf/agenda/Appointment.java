@@ -47,6 +47,9 @@ public class Appointment {
     private UUID sourceAppointmentId;
     @Column(name = "rescheduled_to_id")
     private UUID rescheduledToId;
+    /** Agrupa las citas generadas juntas por {@code createSeries} (serie recurrente). */
+    @Column(name = "series_id")
+    private UUID seriesId;
 
     @Column(name = "cancellation_reason")
     private String cancellationReason;
@@ -93,6 +96,8 @@ public class Appointment {
     public void setSourceAppointmentId(UUID v) { this.sourceAppointmentId = v; }
     public UUID getRescheduledToId() { return rescheduledToId; }
     public void setRescheduledToId(UUID v) { this.rescheduledToId = v; }
+    public UUID getSeriesId() { return seriesId; }
+    public void setSeriesId(UUID v) { this.seriesId = v; }
     public String getCancellationReason() { return cancellationReason; }
     public void setCancellationReason(String v) { this.cancellationReason = v; }
     public boolean isLateCancellationFee() { return lateCancellationFee; }

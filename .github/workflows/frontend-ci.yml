@@ -1,0 +1,35 @@
+name: Frontend CI (klinikpro-vf-web)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "klinikpro-vf-web/**"
+      - ".github/workflows/frontend-ci.yml"
+  pull_request:
+    paths:
+      - "klinikpro-vf-web/**"
+      - ".github/workflows/frontend-ci.yml"
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: klinikpro-vf-web
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: klinikpro-vf-web/package-lock.json
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Type-check + build (tsc -b && vite build)
+        run: npm run build

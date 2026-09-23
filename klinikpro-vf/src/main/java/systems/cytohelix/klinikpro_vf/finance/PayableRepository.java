@@ -1,6 +1,7 @@
 package systems.cytohelix.klinikpro_vf.finance;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,4 +15,8 @@ public interface PayableRepository extends JpaRepository<Payable, UUID> {
     @Query("select coalesce(sum(p.amount), 0) from Payable p " +
             "where p.branchId = :branchId and p.status = 'Pendiente'")
     BigDecimal sumPending(@Param("branchId") UUID branchId);
+
+    /** CxP pendientes que vencen en o antes de {@code cutoff} (vencidas + próximas a vencer). */
+    List<Payable> findByBranchIdAndStatusAndDueDateLessThanEqualOrderByDueDateAsc(
+            UUID branchId, String status, LocalDate cutoff);
 }

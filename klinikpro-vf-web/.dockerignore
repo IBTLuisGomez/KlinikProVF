@@ -1,0 +1,6 @@
+node_modules
+dist
+dist_verify*
+.git
+.env
+.env.local

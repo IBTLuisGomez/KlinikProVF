@@ -1,6 +1,7 @@
 package systems.cytohelix.klinikpro_vf.finance;
 
 import java.time.LocalDate;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
@@ -23,6 +24,9 @@ import systems.cytohelix.klinikpro_vf.finance.FinanceDtos.PayableReq;
  * registrado: borra ese gasto y regresa la CxP a "Pendiente" — no toca la
  * ocurrencia recurrente ya generada, si la hay (queda como una obligación
  * futura independiente).
+ *
+ * <p>Fase 5.1: {@link #dueReminders} surge el campo {@code reminderAt} que ya
+ * existía en la entidad pero no se exponía — ver AUDITORIA_KLINIKPROVF_HTML.md.
  */
 @Service
 public class PayableService {
@@ -51,6 +55,20 @@ public class PayableService {
         return repo.findById(id)
                 .filter(p -> p.getBranchId().equals(branch()))
                 .orElseThrow(() -> new NoSuchElementException("Cuenta por pagar no encontrada"));
+    }
+
+    /** CxP pendientes vencidas o por vencer en los próximos {@code daysAhead} días (default 0 = solo vencidas/hoy). */
+    public List<Payable> dueReminders(Integer daysAhead) {
+        LocalDate cutoff = LocalDate.now().plusDays(daysAhead == null ? 0 : Math.max(0, daysAhead));
+        return repo.findByBranchIdAndStatusAndDueDateLessThanEqualOrderByDueDateAsc(branch(), "Pendiente", cutoff);
+    }
+
+    /** Marca que ya se le avisó al usuario sobre esta CxP próxima a vencer. */
+    @Transactional
+    public Payable markReminded(UUID id) {
+        Payable p = get(id);
+        p.setReminderAt(OffsetDateTime.now());
+        return repo.save(p);
     }
 
     @Transactional

@@ -46,6 +46,13 @@ public class Patient {
     @Column(name = "auto_created")
     private boolean autoCreated = false;
 
+    /** Cancelaciones tardías (sin el aviso mínimo) acumuladas — ver AppointmentService.cancel(). */
+    @Column(name = "late_cancellation_count", nullable = false)
+    private int lateCancellationCount = 0;
+    /** Baja automática: no se le pueden agendar nuevas citas hasta que liderazgo lo reactive. */
+    @Column(nullable = false)
+    private boolean blocked = false;
+
     @Column(name = "created_at", insertable = false, updatable = false)
     private OffsetDateTime createdAt;
 
@@ -179,6 +186,22 @@ public class Patient {
 
     public void setAutoCreated(boolean v) {
         this.autoCreated = v;
+    }
+
+    public int getLateCancellationCount() {
+        return lateCancellationCount;
+    }
+
+    public void setLateCancellationCount(int v) {
+        this.lateCancellationCount = v;
+    }
+
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean v) {
+        this.blocked = v;
     }
 
     public OffsetDateTime getCreatedAt() {

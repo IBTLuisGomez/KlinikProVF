@@ -72,9 +72,9 @@ class CajaServiceIT {
                 null,
                 List.of(new ItemLine("Consulta", 1, new BigDecimal("1000.00"))),
                 List.of(
-                        new PaymentLine("efectivo", new BigDecimal("600.00")),
-                        new PaymentLine("debito", new BigDecimal("400.00"))),
-                null, 0, "cobro de prueba");
+                        new PaymentLine("efectivo", new BigDecimal("600.00"), null),
+                        new PaymentLine("debito", new BigDecimal("400.00"), null)),
+                null, 0, "cobro de prueba", null, null, null);
 
         Transaction tx = transactionService.create(req);
 
@@ -90,8 +90,8 @@ class CajaServiceIT {
         TransactionReq req = new TransactionReq(
                 null,
                 List.of(new ItemLine("Consulta", 1, new BigDecimal("500.00"))),
-                List.of(new PaymentLine("efectivo", new BigDecimal("500.00"))),
-                null, 0, null);
+                List.of(new PaymentLine("efectivo", new BigDecimal("500.00"), null)),
+                null, 0, null, null, null, null);
 
         assertThatThrownBy(() -> transactionService.create(req))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -122,11 +122,11 @@ class CajaServiceIT {
         transactionService.create(new TransactionReq(
                 null,
                 List.of(new ItemLine("Consulta", 1, new BigDecimal("300.00"))),
-                List.of(new PaymentLine("efectivo", new BigDecimal("300.00"))),
-                null, 0, null));
+                List.of(new PaymentLine("efectivo", new BigDecimal("300.00"), null)),
+                null, 0, null, null, null, null));
 
         // Esperado: base 1000 + efectivo 300 = 1300. Si contamos 1250, faltan 50.
-        CashCount count = cashCountService.create(new CashCountReq(new BigDecimal("1250.00"), "Fer"));
+        CashCount count = cashCountService.create(new CashCountReq(new BigDecimal("1250.00"), "Fer", null));
 
         assertThat(count.getDifference()).isEqualByComparingTo("-50.00");
     }

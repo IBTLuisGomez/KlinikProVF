@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Variables de entorno con secretos reales — nunca se sube
+.env
+
+# Dumps de backup-db.sh — nunca se suben
+scripts/backups/

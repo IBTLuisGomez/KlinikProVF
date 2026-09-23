@@ -22,6 +22,13 @@ public class PayableController {
     @GetMapping
     public List<Payable> list() { return svc.list(); }
 
+    /** CxP vencidas o por vencer en los próximos {@code dias} (default 0 = vencidas/hoy). */
+    @PreAuthorize(Roles.ANY)
+    @GetMapping("/recordatorios")
+    public List<Payable> reminders(@RequestParam(required = false) Integer dias) {
+        return svc.dueReminders(dias);
+    }
+
     @PreAuthorize(Roles.ANY)
     @GetMapping("/{id}")
     public Payable get(@PathVariable UUID id) { return svc.get(id); }
@@ -37,4 +44,8 @@ public class PayableController {
     @PreAuthorize(Roles.LEADERSHIP)
     @PostMapping("/{id}/revertir")
     public Payable reverse(@PathVariable UUID id) { return svc.reverse(id); }
+
+    @PreAuthorize(Roles.FRONT_DESK)
+    @PostMapping("/{id}/recordatorio-enviado")
+    public Payable markReminded(@PathVariable UUID id) { return svc.markReminded(id); }
 }

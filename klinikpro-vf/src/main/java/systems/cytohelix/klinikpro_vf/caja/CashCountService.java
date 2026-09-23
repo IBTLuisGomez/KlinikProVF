@@ -2,6 +2,7 @@ package systems.cytohelix.klinikpro_vf.caja;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -18,6 +19,9 @@ import systems.cytohelix.klinikpro_vf.caja.CajaDtos.CashCountReq;
  * en efectivo del día − gastos de contado del día) contra lo contado
  * físicamente. Solo considera pagos con método "efectivo"; tarjeta y
  * transferencia no forman parte del efectivo en caja.
+ *
+ * <p>Fase 5.1: admite desglose de denominaciones (billetes/monedas); si no
+ * se manda {@code counted} explícito, se calcula como la suma del desglose.
  */
 @Service
 public class CashCountService {
@@ -47,8 +51,10 @@ public class CashCountService {
 
     @Transactional
     public CashCount create(CashCountReq r) {
-        if (r.counted() == null)
-            throw new IllegalArgumentException("El monto contado es obligatorio");
+        BigDecimal denominationsTotal = sumDenominations(r.denominations());
+        BigDecimal counted = r.counted() != null ? r.counted() : denominationsTotal;
+        if (counted == null)
+            throw new IllegalArgumentException("El monto contado es obligatorio (o el desglose de denominaciones)");
 
         LocalDate today = LocalDate.now();
         var open = sessions.findByBranchIdAndStatus(branch(), "abierta");
@@ -66,7 +72,7 @@ public class CashCountService {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         BigDecimal expected = base.add(cashIn).subtract(cashOut);
-        BigDecimal difference = r.counted().subtract(expected);
+        BigDecimal difference = counted.subtract(expected);
 
         CashCount c = new CashCount();
         c.setTenantId(tenant());
@@ -74,16 +80,42 @@ public class CashCountService {
         c.setDate(today);
         c.setResponsible(r.responsible());
         c.setBaseAmount(base);
-        c.setCounted(r.counted());
+        c.setCounted(counted);
         c.setDifference(difference);
-        c.setDetail(Map.of(
-                "baseAmount", base,
-                "cashIn", cashIn,
-                "cashOut", cashOut,
-                "expected", expected));
+
+        Map<String, Object> detail = new HashMap<>();
+        detail.put("baseAmount", base);
+        detail.put("cashIn", cashIn);
+        detail.put("cashOut", cashOut);
+        detail.put("expected", expected);
+        if (r.denominations() != null && !r.denominations().isEmpty()) {
+            detail.put("denominations", r.denominations());
+            detail.put("denominationsTotal", denominationsTotal);
+        }
+        c.setDetail(detail);
+
         c.setCreatedBy(CurrentUser.id());
         open.ifPresent(s -> c.setCashSessionId(s.getId()));
 
         return repo.save(c);
+    }
+
+    /** Suma "valor de denominación" x "cantidad", p.ej. {"500": 2, "0.5": 4} -&gt; 1002.0. */
+    private static BigDecimal sumDenominations(Map<String, Integer> denominations) {
+        if (denominations == null || denominations.isEmpty()) return null;
+        BigDecimal sum = BigDecimal.ZERO;
+        for (Map.Entry<String, Integer> e : denominations.entrySet()) {
+            BigDecimal value;
+            try {
+                value = new BigDecimal(e.getKey());
+            } catch (NumberFormatException ex) {
+                throw new IllegalArgumentException("Denominación inválida: " + e.getKey());
+            }
+            int qty = e.getValue() == null ? 0 : e.getValue();
+            if (qty < 0)
+                throw new IllegalArgumentException("Cantidad inválida para la denominación " + e.getKey());
+            sum = sum.add(value.multiply(BigDecimal.valueOf(qty)));
+        }
+        return sum;
     }
 }

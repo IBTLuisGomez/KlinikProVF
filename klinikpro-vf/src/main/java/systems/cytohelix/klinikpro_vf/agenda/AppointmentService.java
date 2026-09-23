@@ -12,12 +12,21 @@ import org.springframework.transaction.annotation.Transactional;
 import systems.cytohelix.klinikpro_vf.agenda.AgendaDtos.AppointmentCancelReq;
 import systems.cytohelix.klinikpro_vf.agenda.AgendaDtos.AppointmentCreateReq;
 import systems.cytohelix.klinikpro_vf.agenda.AgendaDtos.AppointmentRescheduleReq;
+import systems.cytohelix.klinikpro_vf.agenda.AgendaDtos.AppointmentSeriesReq;
+import systems.cytohelix.klinikpro_vf.agenda.AgendaDtos.AppointmentSeriesResult;
 import systems.cytohelix.klinikpro_vf.auth.TenantContext;
+import systems.cytohelix.klinikpro_vf.finance.TreatmentService;
+import systems.cytohelix.klinikpro_vf.patients.PatientService;
 
 /**
  * Reglas de negocio de la Agenda, portadas 1:1 del pseudocódigo de LogicaAgenda.pdf
  * (secciones 2.1 "Validar Disponibilidad", 2.2 "Crear Cita", 2.3 "Cancelar Cita",
  * 2.4 "Reprogramar Cita" y los casos de uso CU-01 a CU-09).
+ *
+ * <p>Fase 5.1: al finalizar la atención se descuenta la sesión del tratamiento
+ * vigente del paciente ({@link #finishCare}), y las cancelaciones tardías
+ * repetidas bloquean automáticamente al paciente ({@link #cancel}) — ver
+ * {@code AUDITORIA_KLINIKPROVF_HTML.md} y {@code PLAN_MAESTRO.md} FASE 5.1.
  *
  * La anotación @Service va calificada por completo (sin import) para no chocar
  * con la entidad {@link Service} de este mismo paquete.
@@ -31,6 +40,8 @@ public class AppointmentService {
     private final SpecialistScheduleRepository schedules;
     private final ScheduleBlockRepository blocks;
     private final AppointmentAuditRepository audit;
+    private final TreatmentService treatments;
+    private final PatientService patients;
 
     private final int minLeadMinutes;
     private final int maxLeadDays;
@@ -43,6 +54,8 @@ public class AppointmentService {
             SpecialistScheduleRepository schedules,
             ScheduleBlockRepository blocks,
             AppointmentAuditRepository audit,
+            TreatmentService treatments,
+            PatientService patients,
             @Value("${agenda.min-lead-minutes:120}") int minLeadMinutes,
             @Value("${agenda.max-lead-days:60}") int maxLeadDays,
             @Value("${agenda.cancellation-min-hours:24}") int cancellationMinHours,
@@ -53,6 +66,8 @@ public class AppointmentService {
         this.schedules = schedules;
         this.blocks = blocks;
         this.audit = audit;
+        this.treatments = treatments;
+        this.patients = patients;
         this.minLeadMinutes = minLeadMinutes;
         this.maxLeadDays = maxLeadDays;
         this.cancellationMinHours = cancellationMinHours;
@@ -109,17 +124,25 @@ public class AppointmentService {
     // ---------- CU-01: Agendar Cita ----------
     @Transactional
     public Appointment create(AppointmentCreateReq r, UUID actorUserId) {
-        if (r.patientId() == null) throw new IllegalArgumentException("patientId es obligatorio");
-        if (r.specialistId() == null) throw new IllegalArgumentException("specialistId es obligatorio");
-        if (r.serviceId() == null) throw new IllegalArgumentException("serviceId es obligatorio");
-        if (r.startsAt() == null) throw new IllegalArgumentException("startsAt es obligatorio");
+        return createOne(r.patientId(), r.specialistId(), r.serviceId(), r.roomId(), r.startsAt(), actorUserId, null);
+    }
 
-        Service service = services.findByIdAndBranchId(r.serviceId(), branch())
+    private Appointment createOne(UUID patientId, UUID specialistId, UUID serviceId, UUID roomId,
+            OffsetDateTime startsAt, UUID actorUserId, UUID seriesId) {
+        if (patientId == null) throw new IllegalArgumentException("patientId es obligatorio");
+        if (specialistId == null) throw new IllegalArgumentException("specialistId es obligatorio");
+        if (serviceId == null) throw new IllegalArgumentException("serviceId es obligatorio");
+        if (startsAt == null) throw new IllegalArgumentException("startsAt es obligatorio");
+
+        if (patients.get(patientId).isBlocked())
+            throw new IllegalArgumentException("El paciente está bloqueado por cancelaciones repetidas; contacte a liderazgo");
+
+        Service service = services.findByIdAndBranchId(serviceId, branch())
                 .orElseThrow(() -> new NoSuchElementException("Servicio no encontrado"));
         if (!service.isActive())
             throw new IllegalArgumentException("El servicio no está activo");
 
-        Specialist specialist = specialists.findByIdAndBranchId(r.specialistId(), branch())
+        Specialist specialist = specialists.findByIdAndBranchId(specialistId, branch())
                 .orElseThrow(() -> new NoSuchElementException("Médico no encontrado"));
         boolean offersService = specialist.getServices().stream()
                 .anyMatch(sv -> sv.getId().equals(service.getId()));
@@ -127,25 +150,79 @@ public class AppointmentService {
             throw new IllegalArgumentException("El médico no ofrece ese servicio");
 
         int totalMinutes = service.getMinutes() + service.getBufferMinutes();
-        OffsetDateTime start = r.startsAt();
-        OffsetDateTime end = start.plusMinutes(totalMinutes);
+        OffsetDateTime end = startsAt.plusMinutes(totalMinutes);
 
-        validateAvailability(specialist.getId(), r.roomId(), start, end, null);
+        validateAvailability(specialist.getId(), roomId, startsAt, end, null);
 
         Appointment a = new Appointment();
         a.setTenantId(tenant());
         a.setBranchId(branch());
-        a.setPatientId(r.patientId());
+        a.setPatientId(patientId);
         a.setServiceId(service.getId());
         a.setSpecialistId(specialist.getId());
-        a.setRoomId(r.roomId());
-        a.setStartsAt(start);
+        a.setRoomId(roomId);
+        a.setStartsAt(startsAt);
         a.setEndsAt(end);
         a.setStatus(AppointmentStatus.SCHEDULED);
+        a.setSeriesId(seriesId);
         a.setCreatedBy(actorUserId);
         a = appointments.save(a);
         recordAudit(a.getId(), null, a.getStatus().name(), actorUserId, "Cita creada");
         return a;
+    }
+
+    /**
+     * CU-09 (serie recurrente): agenda varias ocurrencias de la misma cita en la
+     * frecuencia indicada. No es transaccional como bloque: cada ocurrencia se
+     * intenta por separado (misma validación que {@link #create}) y las que
+     * choquen con otra cita se omiten sin abortar el resto de la serie — es más
+     * útil para el usuario que fallar toda la serie por un solo conflicto.
+     */
+    @Transactional
+    public AppointmentSeriesResult createSeries(AppointmentSeriesReq r, UUID actorUserId) {
+        if (r.startsAt() == null) throw new IllegalArgumentException("startsAt es obligatorio");
+        int occurrences = r.occurrences() == null ? 1 : r.occurrences();
+        if (occurrences < 1 || occurrences > 52)
+            throw new IllegalArgumentException("occurrences debe estar entre 1 y 52");
+
+        UUID seriesId = UUID.randomUUID();
+        List<Appointment> created = new java.util.ArrayList<>();
+        List<String> skipped = new java.util.ArrayList<>();
+        OffsetDateTime when = r.startsAt();
+
+        for (int i = 0; i < occurrences; i++) {
+            try {
+                created.add(createOne(r.patientId(), r.specialistId(), r.serviceId(), r.roomId(),
+                        when, actorUserId, seriesId));
+            } catch (RuntimeException ex) {
+                skipped.add(when + ": " + ex.getMessage());
+            }
+            when = switch (r.frequency() == null ? "semanal" : r.frequency()) {
+                case "quincenal" -> when.plusWeeks(2);
+                case "mensual" -> when.plusMonths(1);
+                default -> when.plusWeeks(1); // "semanal"
+            };
+        }
+        return new AppointmentSeriesResult(seriesId, created, skipped);
+    }
+
+    public List<Appointment> listSeries(UUID seriesId) {
+        return appointments.findBySeriesIdAndBranchIdOrderByStartsAtAsc(seriesId, branch());
+    }
+
+    /** Cancela todas las ocurrencias futuras y aún activas de la serie (no toca las ya pasadas/cerradas). */
+    @Transactional
+    public int cancelSeries(UUID seriesId, UUID actorUserId) {
+        OffsetDateTime now = OffsetDateTime.now();
+        int count = 0;
+        for (Appointment a : listSeries(seriesId)) {
+            if (a.getStartsAt().isAfter(now)
+                    && (a.getStatus() == AppointmentStatus.SCHEDULED || a.getStatus() == AppointmentStatus.CONFIRMED)) {
+                cancel(a.getId(), new AppointmentCancelReq("Serie cancelada"), actorUserId, false);
+                count++;
+            }
+        }
+        return count;
     }
 
     // ---------- CU-02: Confirmar Cita ----------
@@ -179,6 +256,12 @@ public class AppointmentService {
         a.setCancelledAt(OffsetDateTime.now());
         a = appointments.save(a);
         recordAudit(a.getId(), previous.name(), a.getStatus().name(), actorUserId, a.getCancellationReason());
+
+        // Cancelación tardía (sin el aviso mínimo exigido): cuenta para la baja
+        // automática del paciente — ver PatientService.registerLateCancellation.
+        if (lateFee) {
+            patients.registerLateCancellation(a.getPatientId());
+        }
         return a;
     }
 
@@ -251,7 +334,15 @@ public class AppointmentService {
         requireStatus(a, AppointmentStatus.IN_PROGRESS);
         transition(a, AppointmentStatus.COMPLETED, actorUserId, "Atención finalizada");
         a.setFinishedAt(OffsetDateTime.now());
-        return appointments.save(a);
+        a = appointments.save(a);
+
+        // Si el servicio cuenta como sesión de un tratamiento, se descuenta del
+        // paquete vigente del paciente (no toda cita completada pertenece a uno).
+        services.findByIdAndBranchId(a.getServiceId(), branch())
+                .filter(Service::isCountsAsSession)
+                .ifPresent(s -> treatments.registerSessionFromAppointment(a.getPatientId()));
+
+        return a;
     }
 
     // ---------- CU-08: Registrar No-Show ----------

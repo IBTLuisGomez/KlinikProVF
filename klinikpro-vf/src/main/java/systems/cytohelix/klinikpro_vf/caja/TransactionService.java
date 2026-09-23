@@ -24,12 +24,20 @@ import systems.cytohelix.klinikpro_vf.finance.Treatment;
 import systems.cytohelix.klinikpro_vf.finance.TreatmentService;
 import systems.cytohelix.klinikpro_vf.patients.Patient;
 import systems.cytohelix.klinikpro_vf.patients.PatientRepository;
+import systems.cytohelix.klinikpro_vf.patients.PatientService;
 
 /**
  * Cobros de caja (CU de "cobro" del prototipo v2). La comisión de tarjeta
  * (débito/crédito) se suma al total del cobro — la absorbe el cliente, no
  * la clínica — por eso {@code payments} debe sumar exactamente
  * {@code subtotal + comisión}, no el subtotal solo.
+ *
+ * <p>Fase 5.1: la comisión admite una tasa capturada por transacción
+ * ({@code commissionRateOverride}, con la tasa global como default), la
+ * fecha de operación es explícita ({@code date}), los pagos por
+ * transferencia exigen folio bancario, y un cobro sin paciente ya
+ * registrado puede dar de alta uno automáticamente ({@code newPatientName})
+ * — ver {@code AUDITORIA_KLINIKPROVF_HTML.md}.
  */
 @Service
 public class TransactionService {
@@ -42,17 +50,20 @@ public class TransactionService {
     private final TransactionRepository repo;
     private final CashSessionRepository sessions;
     private final PatientRepository patients;
+    private final PatientService patientService;
     private final TreatmentService treatments;
     private final BigDecimal commissionRate;
 
     public TransactionService(TransactionRepository repo,
                                CashSessionRepository sessions,
                                PatientRepository patients,
+                               PatientService patientService,
                                TreatmentService treatments,
                                @Value("${caja.card-commission-rate:0.035}") BigDecimal commissionRate) {
         this.repo = repo;
         this.sessions = sessions;
         this.patients = patients;
+        this.patientService = patientService;
         this.treatments = treatments;
         this.commissionRate = commissionRate;
     }
@@ -100,12 +111,15 @@ public class TransactionService {
         BigDecimal cardTotal = BigDecimal.ZERO;
         BigDecimal paymentsTotal = BigDecimal.ZERO;
         for (PaymentLine p : r.payments()) {
-            if (p.method() == null || !VALID_METHODS.contains(p.method().toLowerCase(Locale.ROOT)))
+            String method = p.method() == null ? "" : p.method().toLowerCase(Locale.ROOT);
+            if (!VALID_METHODS.contains(method))
                 throw new IllegalArgumentException("Método de pago inválido: " + p.method());
             if (p.amount() == null || p.amount().signum() <= 0)
                 throw new IllegalArgumentException("Monto de pago inválido");
+            if ("transferencia".equals(method) && (p.transferFolio() == null || p.transferFolio().isBlank()))
+                throw new IllegalArgumentException("El pago por transferencia requiere folio bancario");
             paymentsTotal = paymentsTotal.add(p.amount());
-            if (CARD_METHODS.contains(p.method().toLowerCase(Locale.ROOT)))
+            if (CARD_METHODS.contains(method))
                 cardTotal = cardTotal.add(p.amount());
         }
 
@@ -117,14 +131,17 @@ public class TransactionService {
             throw new IllegalArgumentException(
                     "Los pagos (" + paymentsTotal + ") no coinciden con el subtotal del cobro (" + subtotal + ")");
 
-        BigDecimal commission = cardTotal.multiply(commissionRate).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal effectiveRate = (r.commissionRateOverride() != null && r.commissionRateOverride().signum() >= 0)
+                ? r.commissionRateOverride()
+                : commissionRate;
+        BigDecimal commission = cardTotal.multiply(effectiveRate).setScale(2, RoundingMode.HALF_UP);
         BigDecimal total = subtotal.add(commission);
 
         Transaction t = new Transaction();
         t.setTenantId(tenant());
         t.setBranchId(branch());
         t.setFolio(nextFolio(branch()));
-        t.setDate(LocalDate.now());
+        t.setDate(r.date() != null ? r.date() : LocalDate.now());
         t.setAmount(total);
         t.setCommission(commission);
         t.setMethod(r.payments().size() == 1 ? r.payments().get(0).method() : "mixto");
@@ -137,6 +154,11 @@ public class TransactionService {
         if (r.patientId() != null) {
             Patient p = patients.findByIdAndBranchId(r.patientId(), branch())
                     .orElseThrow(() -> new NoSuchElementException("Paciente no encontrado"));
+            t.setPatientId(p.getId());
+            t.setPatientName(p.getFullName());
+        } else if (r.newPatientName() != null && !r.newPatientName().isBlank()) {
+            // Alta automática: cobro rápido sin buscar/crear al paciente primero.
+            Patient p = patientService.createWalkIn(r.newPatientName());
             t.setPatientId(p.getId());
             t.setPatientName(p.getFullName());
         }
@@ -177,7 +199,7 @@ public class TransactionService {
         t.setCommission(commission);
         t.setMethod(method);
         t.setItems(List.of(new ItemLine("Cobro CxC: " + rcv.getConcept(), 1, subtotal)));
-        t.setPayments(List.of(new PaymentLine(method, subtotal)));
+        t.setPayments(List.of(new PaymentLine(method, subtotal, null)));
         t.setPatientName(rcv.getClient());
         t.setNotes("Pago de cuenta por cobrar (" + rcv.getId() + ")");
         t.setCashSessionId(open.getId());

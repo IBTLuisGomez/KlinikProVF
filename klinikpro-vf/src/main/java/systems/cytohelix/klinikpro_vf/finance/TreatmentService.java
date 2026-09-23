@@ -2,6 +2,7 @@ package systems.cytohelix.klinikpro_vf.finance;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -10,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import systems.cytohelix.klinikpro_vf.auth.CurrentUser;
 import systems.cytohelix.klinikpro_vf.auth.TenantContext;
 import systems.cytohelix.klinikpro_vf.finance.FinanceDtos.TreatmentReq;
+import systems.cytohelix.klinikpro_vf.patients.Patient;
+import systems.cytohelix.klinikpro_vf.patients.PatientRepository;
 
 /**
  * Ciclo de vida de un tratamiento (paquete de sesiones), según el PDF/prototipo:
@@ -17,16 +20,24 @@ import systems.cytohelix.klinikpro_vf.finance.FinanceDtos.TreatmentReq;
  * La transición automática está disparada por el uso: la regla documentada del
  * prototipo es "usadas ≥ pagadas → POR_COBRAR" (el paciente debe sesiones que ya
  * consumió); si además ya consumió todas las recomendadas, pasa a "pendiente_cierre"
- * (el paquete completo, solo falta cerrarlo formalmente). "en_revision" y el cierre
- * final ("finalizado") son manuales — no hay una señal automática documentada para
- * ellos en el PDF.
+ * (el paquete completo, solo falta cerrarlo formalmente).
+ *
+ * <p>Fase 5.1: se automatiza también "en_revision" (pagó menos de lo recomendado),
+ * que el prototipo {@code KlinikProVF.html} sí dispara solo y esta versión
+ * dejaba manual, y se bloquea crear un tratamiento (paquete/promoción) para un
+ * paciente de aseguradora, regla dura del prototipo que no estaba validada
+ * — ver {@code AUDITORIA_KLINIKPROVF_HTML.md}.
  */
 @Service
 public class TreatmentService {
-    private final TreatmentRepository repo;
+    private static final List<String> CLOSED_STATUSES = List.of("pendiente_cierre", "finalizado", "cerrado");
 
-    public TreatmentService(TreatmentRepository repo) {
+    private final TreatmentRepository repo;
+    private final PatientRepository patients;
+
+    public TreatmentService(TreatmentRepository repo, PatientRepository patients) {
         this.repo = repo;
+        this.patients = patients;
     }
 
     private UUID tenant() { return req(TenantContext.tenant(), "tenant"); }
@@ -50,12 +61,24 @@ public class TreatmentService {
                 .orElseThrow(() -> new NoSuchElementException("Tratamiento no encontrado"));
     }
 
+    /** El tratamiento vigente del paciente (el más reciente sin cerrar), si tiene uno. */
+    public Optional<Treatment> activeForPatient(UUID patientId) {
+        return repo.findFirstByBranchIdAndPatientIdAndStatusNotInOrderByCreatedAtDesc(
+                branch(), patientId, CLOSED_STATUSES);
+    }
+
     @Transactional
     public Treatment create(TreatmentReq r) {
         if (r.patientId() == null)
             throw new IllegalArgumentException("El tratamiento debe tener un paciente");
         if (r.recommended() < 0)
             throw new IllegalArgumentException("Sesiones recomendadas inválidas");
+
+        Patient patient = patients.findByIdAndBranchId(r.patientId(), branch())
+                .orElseThrow(() -> new NoSuchElementException("Paciente no encontrado"));
+        if (patient.isInsurer())
+            throw new IllegalArgumentException(
+                    "Los pacientes de aseguradora no pueden recibir tratamientos en paquete/promoción");
 
         Treatment t = new Treatment();
         t.setTenantId(tenant());
@@ -82,7 +105,7 @@ public class TreatmentService {
         return repo.save(t);
     }
 
-    /** Registra sesiones consumidas (uso manual; Agenda no lo dispara todavía). */
+    /** Registra sesiones consumidas (uso manual, o disparado por {@code AppointmentService} al finalizar la atención). */
     @Transactional
     public Treatment registerUsage(UUID id, int sessionsUsed) {
         if (sessionsUsed <= 0)
@@ -92,6 +115,16 @@ public class TreatmentService {
         t.setUsed(t.getRecommended() > 0 ? Math.min(newUsed, t.getRecommended()) : newUsed);
         recalculate(t);
         return repo.save(t);
+    }
+
+    /**
+     * Llamado por {@code AppointmentService} al completar una cita cuyo servicio
+     * cuenta como sesión de tratamiento. Si el paciente no tiene un tratamiento
+     * vigente, no hace nada (no toda cita completada pertenece a un paquete).
+     */
+    @Transactional
+    public Optional<Treatment> registerSessionFromAppointment(UUID patientId) {
+        return activeForPatient(patientId).map(t -> registerUsage(t.getId(), 1));
     }
 
     /** Cierre formal del tratamiento (acción manual, liderazgo). */
@@ -111,10 +144,14 @@ public class TreatmentService {
         if (t.getRecommended() > 0 && t.getUsed() >= t.getRecommended()) {
             t.setStatus("pendiente_cierre");
         } else if (t.getUsed() > 0 && t.getUsed() >= t.getPaid()) {
-            // Regla documentada del prototipo: sesiones usadas >= pagadas → falta cobrar.
-            // (con used=0 y paid=0 la comparación también sería "true"; se exige used>0
-            // para no marcar "por_cobrar" un tratamiento recién creado que aún no se usa).
+            // Sesiones usadas >= pagadas → falta cobrar (con used=0 y paid=0 la
+            // comparación también sería "true"; se exige used>0 para no marcar
+            // "por_cobrar" un tratamiento recién creado que aún no se usa).
             t.setStatus("por_cobrar");
+        } else if (t.getPaid() > 0 && t.getRecommended() > 0 && t.getPaid() < t.getRecommended()) {
+            // Pagó menos sesiones de las recomendadas → a revisar (regla del
+            // prototipo KlinikProVF.html, ahora también automática aquí).
+            t.setStatus("en_revision");
         } else {
             t.setStatus("activo");
         }

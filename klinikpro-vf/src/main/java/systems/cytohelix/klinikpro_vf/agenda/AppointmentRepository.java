@@ -15,6 +15,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, UUID> 
     List<Appointment> findByPatientIdOrderByStartsAtDesc(UUID patientId);
     List<Appointment> findByBranchIdAndStartsAtBetweenOrderByStartsAtAsc(UUID branchId, OffsetDateTime from, OffsetDateTime to);
     List<Appointment> findBySpecialistIdAndStartsAtBetweenOrderByStartsAtAsc(UUID specialistId, OffsetDateTime from, OffsetDateTime to);
+    List<Appointment> findBySeriesIdAndBranchIdOrderByStartsAtAsc(UUID seriesId, UUID branchId);
 
     // Citas activas del médico que se solapan con [start, end).
     @Query("""

@@ -46,4 +46,12 @@ public final class ReportDtos {
             long totalCitas,
             BigDecimal totalPagado,
             OffsetDateTime ultimaVisita) { }
+
+    /** Reporte de Seguimiento: pacientes con historial de citas pero sin ninguna próxima agendada. */
+    public record FollowUpRow(
+            UUID id,
+            String code,
+            String fullName,
+            String phone,
+            OffsetDateTime ultimaVisita) { }
 }

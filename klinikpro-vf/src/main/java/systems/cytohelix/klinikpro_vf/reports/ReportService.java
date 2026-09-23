@@ -19,6 +19,7 @@ import systems.cytohelix.klinikpro_vf.agenda.Appointment;
 import systems.cytohelix.klinikpro_vf.agenda.AppointmentAudit;
 import systems.cytohelix.klinikpro_vf.agenda.AppointmentAuditRepository;
 import systems.cytohelix.klinikpro_vf.agenda.AppointmentRepository;
+import systems.cytohelix.klinikpro_vf.agenda.AppointmentStatus;
 import systems.cytohelix.klinikpro_vf.auth.TenantContext;
 import systems.cytohelix.klinikpro_vf.caja.ExpenseRepository;
 import systems.cytohelix.klinikpro_vf.caja.Transaction;
@@ -31,6 +32,7 @@ import systems.cytohelix.klinikpro_vf.patients.Patient;
 import systems.cytohelix.klinikpro_vf.patients.PatientRepository;
 import systems.cytohelix.klinikpro_vf.reports.ReportDtos.BitacoraEntry;
 import systems.cytohelix.klinikpro_vf.reports.ReportDtos.DashboardReport;
+import systems.cytohelix.klinikpro_vf.reports.ReportDtos.FollowUpRow;
 import systems.cytohelix.klinikpro_vf.reports.ReportDtos.PatientHistoryReport;
 import systems.cytohelix.klinikpro_vf.reports.ReportDtos.PatientSummaryRow;
 
@@ -40,10 +42,10 @@ import systems.cytohelix.klinikpro_vf.reports.ReportDtos.PatientSummaryRow;
  * PDF/impresión con membrete es responsabilidad del frontend
  * ({@code window.print()} sobre estos datos), este servicio solo entrega JSON.
  *
- * <p><b>Nota de escalabilidad:</b> {@link #patients()} hace una consulta por
- * paciente (N+1) para armar el resumen — aceptable para el volumen de una
- * clínica (decenas/cientos de pacientes), pero si esto crece mucho conviene
- * una sola consulta agregada agrupada por paciente.
+ * <p><b>Nota de escalabilidad:</b> {@link #patients()} y {@link #followUp()}
+ * hacen una consulta por paciente (N+1) para armar el resumen — aceptable
+ * para el volumen de una clínica (decenas/cientos de pacientes), pero si esto
+ * crece mucho conviene una sola consulta agregada agrupada por paciente.
  */
 @Service
 public class ReportService {
@@ -155,5 +157,35 @@ public class ReportService {
                             citas.size(), total, ultima);
                 })
                 .toList();
+    }
+
+    /**
+     * Reporte de Seguimiento: pacientes que ya tienen historial de citas pero
+     * no tienen ninguna próxima (programada/confirmada, a futuro) — candidatos
+     * a que se les llame para agendar su siguiente visita. Un paciente sin
+     * ninguna cita todavía no es "seguimiento": es simplemente nuevo.
+     */
+    public List<FollowUpRow> followUp() {
+        UUID branchId = branch();
+        OffsetDateTime now = OffsetDateTime.now();
+
+        List<FollowUpRow> rows = new ArrayList<>();
+        for (Patient p : patients.findByBranchIdOrderByFullNameAsc(branchId)) {
+            List<Appointment> citas = appointments.findByPatientIdOrderByStartsAtDesc(p.getId());
+            if (citas.isEmpty())
+                continue;
+
+            boolean tieneProxima = citas.stream().anyMatch(a ->
+                    a.getStartsAt().isAfter(now)
+                            && (a.getStatus() == AppointmentStatus.SCHEDULED
+                                || a.getStatus() == AppointmentStatus.CONFIRMED));
+            if (tieneProxima)
+                continue;
+
+            OffsetDateTime ultima = citas.get(0).getStartsAt(); // ya viene ordenado desc
+            rows.add(new FollowUpRow(p.getId(), p.getCode(), p.getFullName(), p.getPhone(), ultima));
+        }
+        rows.sort(Comparator.comparing(FollowUpRow::ultimaVisita, Comparator.nullsLast(Comparator.naturalOrder())));
+        return rows;
     }
 }

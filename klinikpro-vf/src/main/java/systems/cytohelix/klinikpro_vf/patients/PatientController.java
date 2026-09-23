@@ -45,4 +45,11 @@ public class PatientController {
         svc.delete(id);
         return Map.of("deleted", true);
     }
+
+    /** Reactiva a un paciente bloqueado por cancelaciones tardías repetidas. */
+    @PreAuthorize(Roles.LEADERSHIP)
+    @PostMapping("/{id}/desbloquear")
+    public Patient unblock(@PathVariable UUID id) {
+        return svc.unblock(id);
+    }
 }

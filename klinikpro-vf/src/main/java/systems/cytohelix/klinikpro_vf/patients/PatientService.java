@@ -1,5 +1,6 @@
 package systems.cytohelix.klinikpro_vf.patients;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import systems.cytohelix.klinikpro_vf.auth.TenantContext;
@@ -9,9 +10,12 @@ import java.util.*;
 @Service
 public class PatientService {
     private final PatientRepository repo;
+    private final int lateCancellationBlockThreshold;
 
-    public PatientService(PatientRepository repo) {
+    public PatientService(PatientRepository repo,
+            @Value("${agenda.late-cancellation-block-threshold:3}") int lateCancellationBlockThreshold) {
         this.repo = repo;
+        this.lateCancellationBlockThreshold = lateCancellationBlockThreshold;
     }
 
     private UUID tenant() {
@@ -53,6 +57,26 @@ public class PatientService {
         return repo.save(p);
     }
 
+    /**
+     * Alta automática desde un cobro rápido en Caja cuando no hay paciente ya
+     * registrado que coincida (equivalente a {@code autoCreado:true} del
+     * prototipo). Solo captura el nombre; el resto se completa después desde
+     * la ficha del paciente.
+     */
+    @Transactional
+    public Patient createWalkIn(String name) {
+        if (name == null || name.isBlank())
+            throw new IllegalArgumentException("El nombre del paciente es obligatorio");
+        Patient p = new Patient();
+        p.setTenantId(tenant());
+        p.setBranchId(branch());
+        p.setFirstName(name.trim());
+        p.setFullName(name.trim());
+        p.setAutoCreated(true);
+        p.setCode(resolveCode(null));
+        return repo.save(p);
+    }
+
     @Transactional
     public Patient update(UUID id, PatientReq r) {
         Patient p = get(id);
@@ -70,6 +94,30 @@ public class PatientService {
     public void delete(UUID id) {
         Patient p = get(id);
         repo.delete(p);
+    }
+
+    /**
+     * Llamado por {@code AppointmentService.cancel()} cuando el paciente cancela
+     * sin el aviso mínimo exigido. Acumula el contador y, al alcanzar el umbral,
+     * bloquea al paciente para nuevas citas (baja automática — FASE 5.1).
+     */
+    @Transactional
+    public Patient registerLateCancellation(UUID patientId) {
+        Patient p = get(patientId);
+        p.setLateCancellationCount(p.getLateCancellationCount() + 1);
+        if (!p.isBlocked() && p.getLateCancellationCount() >= lateCancellationBlockThreshold) {
+            p.setBlocked(true);
+        }
+        return repo.save(p);
+    }
+
+    /** Reactiva manualmente a un paciente bloqueado (liderazgo) y reinicia su contador. */
+    @Transactional
+    public Patient unblock(UUID id) {
+        Patient p = get(id);
+        p.setBlocked(false);
+        p.setLateCancellationCount(0);
+        return repo.save(p);
     }
 
     // ---- helpers ----
